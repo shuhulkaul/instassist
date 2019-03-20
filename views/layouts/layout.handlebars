@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Instassist</title>
+  <link rel='stylesheet' href='/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="/css/style.css">
+
+  
+</head>
+<body>
+ <header id="header" class="header">
+	  <div class="container">
+      <div id="logo" class="pull-left">
+        <img src="" alt="INSTASSIST">
+      </div>
+     
+      <div class="header-right">
+       
+                <a href="/">Home</a>
+           
+                <a href="/">Working</a>
+             
+                <a href="/">Subscriptions</a>
+              
+                <a href="/">FAQs</a>
+             
+                <a href="/">Contact Us</a>
+         
+      </div>
+      </div>
+      </header>
+
+
+<section id="hero" class="wow fadeIn">
+    <div class="hero-container">
+          {{#if success_msg}}
+          {{success_msg}}
+          {{/if}}
+
+          {{#if error_msg}}
+            {{error_msg}}
+          {{/if}}
+
+          {{#if error}}
+          {{error}}
+          {{/if}}
+        </div>
+        {{{body}}}
+</section>
+
+  <script src='/js/jquery.min.js'></script>
+  <script src='/js/index.js'></script>
+</body>
+</html>
