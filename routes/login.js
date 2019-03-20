@@ -7,14 +7,13 @@ var fs = require('fs');
 var everyMinutes = 10;
 var intervalFunc = null;
 
-
 //Accept
 router.post('/accept', function(req, res)
 {
 var username = req.body.username;
 var password= req.body.password;
 var device = new Client.Device(username);
-var loc = './cookies/cookie-'+username+'.json';
+var loc = path.join("public/cookies/cookie-"+username+".json");
 var storage = new Client.CookieFileStorage(loc);
 var pendingCount = 0;
 var total=0;
@@ -106,7 +105,7 @@ var password= req.body.password;
 //console.log(username);
 //console.log(password);
 var device = new Client.Device(username);
-var loc = './cookies/cookie-'+username+'.json';
+var loc = path.join("public/cookies/cookie-"+username+".json");
 var storage = new Client.CookieFileStorage(loc);
 Client.Session.create(device, storage, username, password)
 	.then(( ses ) => {
