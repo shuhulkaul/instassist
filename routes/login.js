@@ -92,9 +92,7 @@ Client.Session.create(device, storage, username, password)
             error(err.message);
             console.log("url is null");
         }
-        if (fs.existsSync(path)) {
-            fs.unlinkSync(loc); 
-         }
+     
     }
     )
 
@@ -129,11 +127,9 @@ Client.Session.create(device, storage, username, password)
             error(err.message);
             console.log("url is null");
         }
-        if (fs.existsSync(path)) {
-            fs.unlinkSync(loc); 
-         }
+     
     }
-    )
+    );
 
     function error(msg){
         req.flash('error_msg', msg);
@@ -147,9 +143,6 @@ Client.Session.create(device, storage, username, password)
 
     function results(session, length)
     {  
-        if (fs.existsSync(path)) {
-           fs.unlinkSync(loc); 
-        }
         
         res.render('results',{total:length});
         //console.log("session=", session);
