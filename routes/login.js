@@ -13,7 +13,7 @@ router.post('/accept', function(req, res)
 var username = req.body.username;
 var password= req.body.password;
 var device = new Client.Device(username);
-var loc = path.join("routes/cookies/cookie-"+username+".json");
+var loc = path.join("./cookie-"+username+".json");
 var storage = new Client.CookieFileStorage(loc);
 var pendingCount = 0;
 var total=0;
@@ -56,20 +56,19 @@ function setTimeoutContinue(){
 }
 
 function error(msg){
-    fs.unlinkSync(loc);
+   
     req.flash('error_msg', msg);
     res.redirect('/error');
 }
 
 function checkpoint(req, res, url)
-{   fs.unlinkSync(loc);
+{
     res.redirect(url);
 }
 
 
 function accepted(req, res, total)
 {
-    fs.unlinkSync(loc);
     res.render('completed', {total : total});
 }
 
@@ -107,7 +106,7 @@ var password= req.body.password;
 //console.log(username);
 //console.log(password);
 var device = new Client.Device(username);
-var loc = path.join("routes/cookies/cookie-"+username+".json");
+var loc = path.join("./cookie-"+username+".json");
 var storage = new Client.CookieFileStorage(loc);
 Client.Session.create(device, storage, username, password)
 	.then(( ses ) => {
@@ -136,21 +135,18 @@ Client.Session.create(device, storage, username, password)
 
     function error(msg){
 
-        fs.unlinkSync(loc);
         req.flash('error_msg', msg);
 		res.redirect('/error');
     }
 
     function checkpoint(req, res, url)
-    {   
-        fs.unlinkSync(loc);
+    { 
         res.redirect(url);
     }
 
     function results(session, length)
     {  
        
-        fs.unlinkSync(loc);
         res.render('results',{total:length});
         //console.log("session=", session);
         
