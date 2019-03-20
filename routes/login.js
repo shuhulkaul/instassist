@@ -6,7 +6,7 @@ var session = null;
 var fs = require('fs');
 var everyMinutes = 10;
 var intervalFunc = null;
-
+var path = require('path');
 //Accept
 router.post('/accept', function(req, res)
 {
