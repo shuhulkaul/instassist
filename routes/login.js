@@ -154,13 +154,10 @@ Client.Session.create(device, storage, username, password)
             .then(( pendingFollowers ) => {
             while(typeof pendingFollowers[i] !== 'undefined')
             {
+             // console.log(i);
                 ++i;
             }
-           //var str= 'hello';
-           var str = JSON.stringify(pendingFollowers[202]._params.username);
-            console.log(str);
-            res.render('eww', {object: str});
-            // results(session, i);
+             results(session, i);
             })
     }
 
