@@ -66,12 +66,6 @@ function checkpoint(req, res, url)
     res.redirect(url);
 }
 
-function results(session, length)
-{   
-    res.render('results',{total:length});
-    //console.log("session=", session);
-    fs.unlinkSync(loc);
-}
 
 function accepted(req, res, total)
 {
@@ -98,7 +92,9 @@ Client.Session.create(device, storage, username, password)
             error(err.message);
             console.log("url is null");
         }
-        fs.unlinkSync(loc);
+        if (fs.existsSync(path)) {
+            fs.unlinkSync(loc); 
+         }
     }
     )
 
@@ -133,7 +129,9 @@ Client.Session.create(device, storage, username, password)
             error(err.message);
             console.log("url is null");
         }
-        fs.unlinkSync(loc);
+        if (fs.existsSync(path)) {
+            fs.unlinkSync(loc); 
+         }
     }
     )
 
@@ -149,7 +147,10 @@ Client.Session.create(device, storage, username, password)
 
     function results(session, length)
     {  
-        fs.unlinkSync(loc); 
+        if (fs.existsSync(path)) {
+           fs.unlinkSync(loc); 
+        }
+        
         res.render('results',{total:length});
         //console.log("session=", session);
         
