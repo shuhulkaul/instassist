@@ -56,18 +56,20 @@ function setTimeoutContinue(){
 }
 
 function error(msg){
+    fs.unlinkSync(loc);
     req.flash('error_msg', msg);
     res.redirect('/error');
 }
 
 function checkpoint(req, res, url)
-{
+{   fs.unlinkSync(loc);
     res.redirect(url);
 }
 
 
 function accepted(req, res, total)
 {
+    fs.unlinkSync(loc);
     res.render('completed', {total : total});
 }
 
@@ -117,12 +119,14 @@ Client.Session.create(device, storage, username, password)
 	})
 	.catch(( err ) => {
         
-        console.log('err:', err.message);
+        console.log('err1:', err.message);
         if(err.url)
         {   
+       
            checkpoint(req, res, err.url);
         }
         else{
+           
             error(err.message);
             console.log("url is null");
         }
@@ -131,18 +135,22 @@ Client.Session.create(device, storage, username, password)
     );
 
     function error(msg){
+
+        fs.unlinkSync(loc);
         req.flash('error_msg', msg);
 		res.redirect('/error');
     }
 
     function checkpoint(req, res, url)
-    {
+    {   
+        fs.unlinkSync(loc);
         res.redirect(url);
     }
 
     function results(session, length)
     {  
-        
+       
+        fs.unlinkSync(loc);
         res.render('results',{total:length});
         //console.log("session=", session);
         
@@ -157,7 +165,9 @@ Client.Session.create(device, storage, username, password)
              // console.log(i);
                 ++i;
             }
-             results(session, i);
+           
+            results(session, i);
+            
             })
     }
 
