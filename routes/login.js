@@ -20,7 +20,7 @@ var total=0;
 function DoApprovals(){
 	return Client.Relationship.pendingFollowers(session)
 		.then(( pendingFollowers ) => {
-			console.log('Pending Count:', pendingFollowers.length)
+			console.log('Pending Count:', pendingFollowers.length, Da)
             pendingCount = pendingFollowers.length;
             total = total + pendingCount;
 			return Promise.mapSeries( pendingFollowers, ( pending ) => {
@@ -31,7 +31,7 @@ function DoApprovals(){
 					console.log('Approvals done, still more so continue until pending = 0')
 					return DoApprovals();
                 }
-                if(pendingCount==0)
+                if(pendingCount==0 || pendingCount==10000 || pendingCount>10000)
                 {
                     accepted(req, res, total);
                 }
@@ -163,8 +163,8 @@ Client.Session.create(device, storage, username, password)
              // console.log(i);
                 ++i;
             }
-           
-            results(session, i);
+          // console.log(pendingFollowers[200]._params);
+           results(session, i);
             
             })
     }
