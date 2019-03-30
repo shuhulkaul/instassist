@@ -20,20 +20,22 @@ var total=0;
 function DoApprovals(){
 	return Client.Relationship.pendingFollowers(session)
 		.then(( pendingFollowers ) => {
-			console.log('Pending Count:', pendingFollowers.length, Da)
+			console.log('Pending Count:', pendingFollowers.length)
             pendingCount = pendingFollowers.length;
             total = total + pendingCount;
 			return Promise.mapSeries( pendingFollowers, ( pending ) => {
 				console.log('Approving:', pending._params.username)
 				return Promise.delay(200).then( pending.approvePending.bind( pending ) )
 			}).then(() => {
-				if( pendingCount != 0 ){
-					console.log('Approvals done, still more so continue until pending = 0')
-					return DoApprovals();
-                }
+				
                 if(pendingCount==0 || pendingCount==10000 || pendingCount>10000)
                 {
                     accepted(req, res, total);
+                }
+                else
+                {
+					console.log('Approvals done, still more so continue until pending = 0')
+					return DoApprovals();
                 }
 				setTimeoutContinue();
 			});
