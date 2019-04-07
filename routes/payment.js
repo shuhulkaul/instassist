@@ -5,7 +5,7 @@ const url = require('url');
 router.post('/webhook', function(req, res)
 {
 
-console.log(res.body);
+console.log(res.purpose);
 });
 router.post('/', function(req, res)
 {
