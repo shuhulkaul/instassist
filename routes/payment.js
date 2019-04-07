@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 const Insta = require('instamojo-nodejs');
 const url = require('url');
+router.post('/webhook', function(req, res)
+{
+console.log(req);
+console.log(res);
+});
 router.post('/', function(req, res)
 {
 var name = req.body.name;
@@ -15,7 +20,7 @@ var amount;
 switch(plan)
 {
     case "1" :
-    amount = 150.00;
+    amount = 9.00;
     break;
     case "2":
     amount = 450.00;
@@ -50,8 +55,8 @@ if (errors) {
 else {
    
     console.log("amount=", amount);
-		Insta.setKeys('test_13aa1f1327d28dd1c9bcc0779a6', 'test_f4bfe00d422e44fb0e70591191e');
-		//Insta.setKeys('a1c9a8485963bd845454a3b78b4d0d7e', '11f209e10f2790dd3b2050b90b0f53c9');
+	  Insta.setKeys('test_13aa1f1327d28dd1c9bcc0779a6', 'test_f4bfe00d422e44fb0e70591191e');
+	//Insta.setKeys('a1c9a8485963bd845454a3b78b4d0d7e', '11f209e10f2790dd3b2050b90b0f53c9');
 
 		const data = new Insta.PaymentData();
 		Insta.isSandboxMode(true);
@@ -64,7 +69,7 @@ else {
 	data.phone =  mobile;
 	data.currency='INR';
 	data.send_email =  false;
-	//data.webhook= 'http://localhost:3000/payment/callback';
+	data.webhook= `http://instassist2.herokuapp.com/payment/webhook`;
 	data.send_sms= false;
 	data.allow_repeated_payments =  false;
 	
@@ -84,8 +89,8 @@ else {
 });
 
 router.get( '/callback', ( req, res ) => {
-	console.log("req=", req);
-	console.log("res=", res);
+	//console.log("req=", req);
+	//console.log("res=", res);
 //	console.log("req-query", req.query);
 //	console.log("name", req.user.name);
 	let url_parts = url.parse( req.url, true),
