@@ -1,0 +1,79 @@
+
+{{#if message}}
+ <section class="hero is-medium is-success is-bold">
+      <div class="columns is-mobile">
+          <div class="column">
+             <div class="container has-text-danger has-text-centered"> 
+           <strong>Email Sent!</strong>   
+           <br>
+             </div>  
+          </div>
+      </div>  
+      </section>
+ {{/if}}
+
+ {{#if error}}
+ <section class="hero is-medium is-warning is-bold">
+      <div class="columns is-mobile">
+          <div class="column">
+             <div class="container has-text-danger has-text-centered"> 
+           <strong>Email Not Sent!</strong>   
+           <br>
+             </div>  
+          </div>
+      </div>  
+      </section>
+ {{/if}}          
+
+  {{#if errors}}
+             {{#each errors}}
+ <section class="hero is-medium is-warning is-bold">
+      <div class="columns is-mobile">
+          <div class="column">
+             <div class="container has-text-danger has-text-centered"> 
+           <strong>{{msg}}</strong>   
+           <br>
+             </div>  
+          </div>
+      </div>  
+      </section>
+       {{/each}}
+            {{/if}}
+<div class="hero-body">
+      <div class="container is-fluid">
+          <div class="column is-half is-offset-one-quarter">
+            <div class="box has-background-grey-dark has-text-white">
+              <h3 class="title has-text-danger">Report an Issue</h3>
+              <h4 class="subtitle has-text-white">We will contact you ASAP.</h4>
+            <form method="post" action="/contact/report">
+              <div class="field">
+                <label class="label has-text-danger">Name</label>
+                <div class="control">
+                  <input  class="input is-rounded is-focused" name="name" id="name" type="text" placeholder="Name" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label has-text-danger">Email</label>
+                  <input class="input is-rounded is-focused" name="email" id="email" type="email" placeholder="eg: instassist@gmail.com" required>
+              </div>
+               <div class="field">
+                <label class="label has-text-danger">Subject</label>
+                  <input class="input is-rounded is-focused" name="subject" id="subject" type="text" placeholder="Subject" required>
+              </div>
+
+              <div class="field">
+                <label class="label has-text-danger">Enter Description</label>
+                <textarea class="textarea is-rounded is-focused" name="message" id="message" rows="10" cols="30" placeholder="Enter your text here."></textarea>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-danger">Submit Report</button>
+                </div>
+              </div>
+              </form>
+              </div>
+              </div>
+          </div>
+      </div>

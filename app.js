@@ -14,7 +14,7 @@ var app = express();
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var payment = require('./routes/payment');
-
+var contact = require('./routes/contact');
 // View Engine
 //Default view directory
 app.set('views', path.join(__dirname, 'views'));
@@ -69,6 +69,7 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/login', login);
 app.use('/payment', payment);
+app.use('/contact', contact);
 
 // Set Port
 var port = process.env.PORT || 3000;

@@ -1,4 +1,5 @@
-  {{#if errors}}
+
+{{#if errors}}
              {{#each errors}}
  <section class="hero is-medium is-warning is-bold">
       <div class="columns is-mobile">
@@ -15,42 +16,45 @@
   <div class="hero-body">
       <div class="container is-fluid">
           <div class="column is-half is-offset-one-quarter">
-            <form method="post" action="payment">
+            <div class="box has-background-grey-dark has-text-white">
+              <h3 class="title has-text-danger">Buy your Subscription</h3>
+              <h4 class="subtitle has-text-white">Please fill this form to proceed.</h4>
+            <form method="post" id="sub" action="payment">
               <div class="field">
-                <label class="label">Name</label>
+                <label class="label has-text-danger">Name</label>
                 <div class="control">
                   <input  class="input is-rounded is-focused" name="name" id="name" type="text" placeholder="Name" required>
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">Instagram Username</label>
+                <label class="label has-text-danger">Instagram Username</label>
                   <input class="input is-rounded is-focused" name="iname" id="iname" type="text" placeholder="eg: instassist" required>
               </div>
 
               <div class="field">
-                <label class="label">Re-enter your Instagram Username</label>
+                <label class="label has-text-danger">Re-enter your Instagram Username</label>
                   <input class="input is-rounded is-focused" name="reiname" id="reiname" type="text" placeholder="eg: instassist" required>
               </div>
 
               <div class="field">
-                <label class="label">Mobile Number</label>
+                <label class="label has-text-danger">Mobile Number</label>
                   <input class="input is-rounded is-focused" name="mobile" id="mobile" type="text" placeholder="eg: 9XXXXXX123" required>
               </div>
 
               <div class="field">
-                <label class="label">Email</label>
+                <label class="label has-text-danger">Email</label>
                   <input class="input is-rounded is-focused" name="email" id="email" type="email" placeholder="eg: instassist@gmail.com" required>
               </div>
               <div class="field">
-                <label class="label">Choose Your Subscription Plan (* Charges Excluded)</label>
+                <label class="label has-text-danger">Choose Your Subscription Plan (* Charges Excluded)</label>
                 <div class="control">
                   <div class="select">
                     <select name="plan" id="plan">
-                      <option value="1">₹100*/3 Days</option>
-                      <option value="2">₹450*/15 Days</option>
-                      <option value="3">₹850*/30 Days</option>
-                      <option value="4">₹1550*/60 Days</option>
+                      <option value="1">₹150*/10K Accepts</option>
+                      <option value="2">₹450*/35K Accepts</option>
+                      <option value="3">₹800*/65K Accepts</option>
+                      <option value="4">₹1500*/Unlimited</option>
                     </select>
                   </div>
                 </div>
@@ -59,7 +63,7 @@
                 <div class="control">
                   <label class="checkbox">
                     <input type="checkbox" required>
-                    I agree to the <a href="#">terms and conditions</a>
+                    I agree to the <a href="tnc" target="_blank">terms and conditions.</a>
                   </label>
                 </div>
               </div>
@@ -69,6 +73,7 @@
                 </div>
               </div>
               </form>
+              </div>
           </div>
       </div>
   </div>

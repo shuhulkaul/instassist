@@ -1,5 +1,5 @@
 var Promise = require('bluebird');
-var Client = require('instagram-private-api').V1;
+//var Client = require('instagram-private-api').V1;
 var express = require('express');
 var router = express.Router();
 var session = null;
