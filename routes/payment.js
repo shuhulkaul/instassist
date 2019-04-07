@@ -4,8 +4,8 @@ const Insta = require('instamojo-nodejs');
 const url = require('url');
 router.post('/webhook', function(req, res)
 {
-
-console.log(res.req.body.purpose);
+var data = res.req.body;
+console.log(data.purpose);
 });
 router.post('/', function(req, res)
 {
