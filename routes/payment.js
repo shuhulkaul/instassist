@@ -15,16 +15,16 @@ var amount;
 switch(plan)
 {
     case "1" :
-    amount = 100.00;
+    amount = 150.00;
     break;
     case "2":
     amount = 450.00;
     break;
     case "3" :
-    amount = 850.00;
+    amount = 800.00;
     break;
     case "4":
-    amount = 1550.00;
+    amount = 1500.00;
     break;
     default:
     amount = 0.00;
@@ -59,7 +59,7 @@ else {
 	data.purpose = iname;
 	data.amount = amount;
 	data.buyer_name =  name;
-	data.redirect_url = "http://localhost:3000/payment/callback";
+	data.redirect_url = `http://${req.get('host')}/payment/callback`;
 	data.email =  email;
 	data.phone =  mobile;
 	data.currency='INR';
@@ -101,7 +101,7 @@ router.get( '/callback', ( req, res ) => {
 			console.log("callback");
 			//console.log(iname);
 		// Redirect the user to payment complete page.
-		return res.redirect('http://localhost:3000/subscribe' );
+		return res.render('subscribe' );
 	}
 
 } );
