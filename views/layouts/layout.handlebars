@@ -1,56 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Instassist</title>
-  <link rel='stylesheet' href='/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="/css/style.css">
-
-  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Instassist</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Bulma Version 0.7.2-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/blog.css">
 </head>
+
 <body>
- <header id="header" class="header">
-	  <div class="container">
-      <div id="logo" class="pull-left">
-        <img src="" alt="INSTASSIST">
-      </div>
-     
-      <div class="header-right">
-       
-                <a href="/">Home</a>
-           
-                <a href="/">Working</a>
-             
-                <a href="/">Subscriptions</a>
-              
-                <a href="/">FAQs</a>
-             
-                <a href="/">Contact Us</a>
-         
-      </div>
-      </div>
-      </header>
-
-
-<section id="hero" class="wow fadeIn">
-    <div class="hero-container">
-          {{#if success_msg}}
-          {{success_msg}}
-          {{/if}}
-
-          {{#if error_msg}}
-            {{error_msg}}
-          {{/if}}
-
-          {{#if error}}
-          {{error}}
-          {{/if}}
+    <!-- START NAV -->
+    <nav class="navbar is-danger">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                        <img src="/art/instassist-l.png" alt="Logo">
+                    </a>
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                        <span></span>
+                <span></span>
+                <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="/home" class="navbar-item">
+                            Home
+                        </a>
+                    <a href="/subscribe" class="navbar-item">
+                            Subscribe
+                        </a>
+                    <a class="navbar-item">
+                            Accepter
+                        </a>
+                    <a class="navbar-item">
+                            Features
+                        </a>
+                    <a href="/subscriptions" class="navbar-item">
+                            Subscription Plans
+                        </a>
+                    <a class="navbar-item">
+                            Contact Us
+                        </a>
+                </div>
+            </div>
         </div>
-        {{{body}}}
-</section>
+    </nav>
+    <!-- END NAV -->
 
-  <script src='/js/jquery.min.js'></script>
-  <script src='/js/index.js'></script>
+    <section class="hero is-fullheight is-bold">
+      <div class="columns is-mobile">
+          <div class="column is-half is-offset-one-quarter">
+           
+            {{#if success_msg}}
+            <div class="container is-success has-text-centered"> 
+               {{success_msg}}
+            </div>
+            {{/if}}
+
+            {{#if error_msg}}
+             <div class="container is-warning has-text-centered"> 
+              {{error_msg}}
+              </div>
+            {{/if}}
+
+            {{#if errors}}
+             <div class="container is-warning has-text-centered"> 
+              {{error}}
+             </div>
+            {{/if}}
+           
+          </div>
+      </div>  
+      {{{body}}}
+    </section>
+        <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
+
 </html>

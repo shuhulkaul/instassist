@@ -6,12 +6,14 @@ var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
+// Init App
+var app = express();
+//404
 
 //routes
 var routes = require('./routes/index');
 var login = require('./routes/login');
-// Init App
-var app = express();
+var payment = require('./routes/payment');
 
 // View Engine
 //Default view directory
@@ -66,9 +68,14 @@ app.use(function (req, res, next) {
 
 app.use('/', routes);
 app.use('/login', login);
+app.use('/payment', payment);
 
 // Set Port
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
 	console.log('Server started on port '+ port);
+});
+
+app.use(function (req, res) {
+  res.status(404).render('404');
 });

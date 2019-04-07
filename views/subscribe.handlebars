@@ -1,0 +1,74 @@
+  {{#if errors}}
+             {{#each errors}}
+ <section class="hero is-medium is-warning is-bold">
+      <div class="columns is-mobile">
+          <div class="column">
+             <div class="container has-text-danger has-text-centered"> 
+           <strong>{{msg}}</strong>   
+           <br>
+             </div>  
+          </div>
+      </div>  
+      </section>
+       {{/each}}
+            {{/if}}
+  <div class="hero-body">
+      <div class="container is-fluid">
+          <div class="column is-half is-offset-one-quarter">
+            <form method="post" action="payment">
+              <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input  class="input is-rounded is-focused" name="name" id="name" type="text" placeholder="Name" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Instagram Username</label>
+                  <input class="input is-rounded is-focused" name="iname" id="iname" type="text" placeholder="eg: instassist" required>
+              </div>
+
+              <div class="field">
+                <label class="label">Re-enter your Instagram Username</label>
+                  <input class="input is-rounded is-focused" name="reiname" id="reiname" type="text" placeholder="eg: instassist" required>
+              </div>
+
+              <div class="field">
+                <label class="label">Mobile Number</label>
+                  <input class="input is-rounded is-focused" name="mobile" id="mobile" type="text" placeholder="eg: 9XXXXXX123" required>
+              </div>
+
+              <div class="field">
+                <label class="label">Email</label>
+                  <input class="input is-rounded is-focused" name="email" id="email" type="email" placeholder="eg: instassist@gmail.com" required>
+              </div>
+              <div class="field">
+                <label class="label">Choose Your Subscription Plan (* Charges Excluded)</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="plan" id="plan">
+                      <option value="1">₹100*/3 Days</option>
+                      <option value="2">₹450*/15 Days</option>
+                      <option value="3">₹850*/30 Days</option>
+                      <option value="4">₹1550*/60 Days</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" required>
+                    I agree to the <a href="#">terms and conditions</a>
+                  </label>
+                </div>
+              </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Pay Now</button>
+                </div>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
