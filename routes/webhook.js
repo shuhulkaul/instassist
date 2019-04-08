@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
 
-router.post('/', function(req, res)
+router.post('/success', function(req, res)
 {
     console.log("webhook");
 var data = res.req.body;

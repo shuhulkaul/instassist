@@ -65,7 +65,7 @@ else {
 	data.phone =  mobile;
 	data.currency='INR';
 	data.send_email =  true;
-	data.webhook= `http://instassist2.herokuapp.com/webhook/`;
+	data.webhook= `http://instassist2.herokuapp.com/webhook/success`;
 	data.send_sms= true;
 	data.allow_repeated_payments =  false;
 	
