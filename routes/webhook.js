@@ -109,8 +109,10 @@ var newTransaction = new Transactions({
     limit : limit,
     plan : plan
 });
-newTransaction.saveOne(function(err) {
+newTransaction.save(function(err) {
     if (err) {
+        res.status(409);
+        res.send('CONFLICT');
         console.log("error= ", err);
     }
     else{
