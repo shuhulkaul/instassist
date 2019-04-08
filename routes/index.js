@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
+//faqs
+router.get('/faqs', function(req, res)
+{
+	res.render('faqs');
+});
 //To registeration page
 router.get('/subscribe', function(req, res)
 {

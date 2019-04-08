@@ -153,8 +153,7 @@ MyAppValidity.findOne({
                     if (err) console.log("update error :", err);
                     console.log('Validity(updated) added!');
                   });
-            }
-               
+            }      
     } 
     else {
             newValidity.save(function(err) {
