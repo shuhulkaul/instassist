@@ -48,6 +48,14 @@ saveUninitialized: true,
 resave: true
 }));
 
+app.use(function(req, res ,next){
+  if(!req.session){
+      return next(new Error('Oh no'));
+      console.log("session error"); //handle error
+  }
+  next() //otherwise continue
+  });
+
 // Express Validator
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
