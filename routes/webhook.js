@@ -133,8 +133,10 @@ MyAppValidity.findOne({
 'purpose' : instaid
 }, function(err, user) {
     if (user) {
-                newValidity.updateOne(function(err) {
-                if (err) throw err;
+                var myquery = {purpose : instaid};
+                var update = {$set: { acceptlimit : limit, validity : validity}};
+                MyAppValidity.updateOne(myquery, update, function(err) {
+                if (err) console.log("update error :", err);
                 console.log('Validity(updated) added!');
               });
     } 
