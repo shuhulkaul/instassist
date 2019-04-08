@@ -105,7 +105,6 @@ console.log("callback");
 		let userId = responseData.user_id;
 		//console.log("user",user_id);
 		// Save the info that user has purchased the bid.
-		bidData.bidCountInPack = '10';
 			console.log("callback");
 			//console.log(iname);
 		// Redirect the user to payment complete page.
