@@ -8,6 +8,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 // Init App
 var app = express();
 //Database connectivity
@@ -45,16 +46,10 @@ app.use(session({
        },
 secret: 'secret',
 saveUninitialized: true,
-resave: true
+resave: true,
+store: new MongoStore(options)
 }));
 
-app.use(function(req, res ,next){
-  if(!req.session){
-      return next(new Error('Oh no'));
-      console.log("session error"); //handle error
-  }
-  next() //otherwise continue
-  });
 
 // Express Validator
 app.use(expressValidator({
