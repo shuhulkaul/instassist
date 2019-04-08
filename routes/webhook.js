@@ -124,29 +124,22 @@ newTransaction.save(function(err) {
   });
 
 var newValidity;
+newValidity = new MyAppValidity({
+purpose : instaid,
+acceptlimit : limit,
+validity : validity
+});
 MyAppValidity.findOne({
 'purpose' : instaid
 }, function(err, user) {
     if (user) {
-            var new_acceptlimit = limit + user.acceptlimit;
-            var new_validity = dateMath.add(user.validity, period, "day");
-                newValidity = new MyAppValidity({
-                purpose : instaid,
-                acceptlimit : new_acceptlimit,
-                validity : new_validity
-            });
-            newValidity.updateOne(function(err) {
+                newValidity.updateOne(function(err) {
                 if (err) throw err;
                 console.log('Validity(updated) added!');
               });
     } 
     else {
-            newValidity = new MyAppValidity({
-            purpose : instaid,
-            acceptlimit : limit,
-            validity : validity
-        });
-        newValidity.save(function(err) {
+            newValidity.save(function(err) {
             if (err) throw err;
             console.log('Validity(new) added!');
           });
