@@ -47,7 +47,7 @@ else if(amount == 800)
 }
 else if(amount == 1500)
 {
-        plan =3;
+        plan =4;
         limit =65000;
         period = 30;
 }

@@ -17,13 +17,13 @@ var UserSchema = new mongoose.Schema(
       {
         type: String,
         required: true,
-        
+        unique : true
       },
       payment_request_id: 
       {
         type: String,
         required: true,
-        
+        unique : true
       },
       amount: 
       {
