@@ -26,7 +26,38 @@ var plan;
 var limit;
 var validity;
 var period;
-switch(amount)
+if(amount==9)
+{
+        plan =1;
+        limit =10000;
+        period = 20;
+}
+else if(amount == 450)
+{
+        plan =2;
+        limit =35000;
+        period = 30;
+}
+else if(amount == 800)
+{
+        plan =3;
+        limit =65000;
+        period = 30;
+}
+else if(amount == 1500)
+{
+        plan =3;
+        limit =65000;
+        period = 30;
+}
+else
+{
+        plan =0;
+        limit =0;
+        period = 0;
+}
+/**
+ switch(amount)
 {
     case "9":
         plan =1;
@@ -45,8 +76,8 @@ switch(amount)
 
         break;
     case "1550":
-        plan =4;
-        limit =34567890;
+        plan =3;
+        limit =65000;
         period = 30;
 
         break;
@@ -56,6 +87,7 @@ switch(amount)
         period = 0;
         break;
 }
+ */
 
 validity = dateMath.add(date, period , "day");
 
