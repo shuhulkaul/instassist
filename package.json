@@ -21,6 +21,8 @@
     "express-validator": "^5.3.1",
     "flash": "^1.1.0",
     "instamojo-nodejs": "0.0.5",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.4.22",
     "nodemailer": "^6.1.0",
     "path": "^0.12.7"
   },
