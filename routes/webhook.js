@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
 
-router.post('/success', function(req, res)
+router.post('/', function(req, res)
 {
     console.log("webhook");
 var data = res.req.body;
@@ -48,7 +48,7 @@ else if(amount == 800)
 else if(amount == 1500)
 {
         plan =4;
-        limit =65000;
+        limit =65000000;
         period = 30;
 }
 else
