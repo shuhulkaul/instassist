@@ -122,23 +122,39 @@ newTransaction.save(function(err) {
        // mongoose.disconnect();
     }
   });
-
+var new_limit, myquery, update;
 var newValidity;
 newValidity = new MyAppValidity({
 purpose : instaid,
 acceptlimit : limit,
-validity : validity
+validity : validity,
+plan : plan
 });
 MyAppValidity.findOne({
 'purpose' : instaid
 }, function(err, user) {
     if (user) {
-                var myquery = {purpose : instaid};
-                var update = {$set: { acceptlimit : limit, validity : validity}};
-                MyAppValidity.updateOne(myquery, update, function(err) {
-                if (err) console.log("update error :", err);
-                console.log('Validity(updated) added!');
-              });
+
+            if(user.plan == 1 || plan == 1 || user.plan == 4 || plan == 4 )
+            {       
+                    myquery = {purpose : instaid};
+                    update = {$set: { acceptlimit : limit, validity : validity, plan : plan}};
+                    MyAppValidity.updateOne(myquery, update, function(err) {
+                    if (err) console.log("update error :", err);
+                    console.log('Validity(updated) added!');
+                  });
+            }
+           else if(user.plan == 2 && plan == 2 || user.plan == 2 && plan == 3 || user.plan == 3 && plan == 2 || user.plan == 3 && plan == 3 )
+            {
+                    new_limit = user.acceptlimit + limit;
+                    myquery = {purpose : instaid};
+                    update = {$set: { acceptlimit : new_limit, validity : validity, plan : plan}};
+                    MyAppValidity.updateOne(myquery, update, function(err) {
+                    if (err) console.log("update error :", err);
+                    console.log('Validity(updated) added!');
+                  });
+            }
+               
     } 
     else {
             newValidity.save(function(err) {

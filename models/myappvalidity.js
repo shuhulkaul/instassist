@@ -13,6 +13,9 @@ var UserSchema = new mongoose.Schema({
     validity: {
         type: Date,
         required: true
+      },
+      plan : {
+        type : Number
       }
   });
 
