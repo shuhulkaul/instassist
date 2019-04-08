@@ -38,14 +38,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Express Session
-
-// app.use(session({
-//     secret: 'secret',
-//     saveUninitialized: true,
-//     resave: true
-// }));
-
-SessionStore = require('session-mongoose')(express);
+app.use(session({
+  cookie:{
+    secure: true,
+    maxAge:60000
+       },
+store: new RedisStore(),
+secret: 'secret',
+saveUninitialized: true,
+resave: true
+}));
 
 // Express Validator
 app.use(expressValidator({
