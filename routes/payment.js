@@ -92,7 +92,7 @@ console.log("callback");
 
 	let url_parts = url.parse( req.url, true),
 		responseData = url_parts.query;
-		if(responseData.status=="Failed")
+		if(responseData.payment_status=="Failed")
 		{
 			return res.redirect('/home');
 		}
