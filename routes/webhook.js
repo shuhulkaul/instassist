@@ -135,7 +135,7 @@ MyAppValidity.findOne({
                 acceptlimit : new_acceptlimit,
                 validity : new_validity
             });
-            newValidity.save(function(err) {
+            newValidity.UpdateOne(function(err) {
                 if (err) throw err;
                 console.log('Validity(updated) added!');
               });

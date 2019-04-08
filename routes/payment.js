@@ -101,15 +101,15 @@ console.log("callback");
 		else
 		{
 		console.log(responseData);
-		if ( responseData.payment_id ) {
-		let userId = responseData.user_id;
+		var notification = "success";
 		//console.log("user",user_id);
 		// Save the info that user has purchased the bid.
 			console.log("callback");
 			//console.log(iname);
 		// Redirect the user to payment complete page.
-		return res.redirect('/subscribe');
-	}
+		return res.render('subscribe',{
+			success : notification
+		});
 	}
 
 } );
