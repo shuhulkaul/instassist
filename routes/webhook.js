@@ -116,7 +116,8 @@ newTransaction.save(function(err) {
     else{
         console.log('Transaction added!');
        // mongoose.connection.close();
-       mongoose.disconnect();
+       // mongoose.disconnect();
+       process.exit();
     }
     
   });
