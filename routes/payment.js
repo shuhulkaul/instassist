@@ -88,7 +88,7 @@ router.get( '/callback', ( req, res ) => {
 	//console.log("req=", req);
 	//console.log("res=", res);
 //	console.log("req-query", req.query);
-//	console.log("name", req.user.name);
+console.log("callback");
 
 	let url_parts = url.parse( req.url, true),
 		responseData = url_parts.query;
