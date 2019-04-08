@@ -12,6 +12,8 @@ var mongoose = require('mongoose');
 var app = express();
 //Database connectivity
 mongoose.connect('mongodb+srv://instassistofficial:Inst@ssIst22@instassistdb-0no3p.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
 
 //routes
