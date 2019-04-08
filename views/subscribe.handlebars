@@ -13,6 +13,18 @@
       </section>
        {{/each}}
             {{/if}}
+{{#if failed}}
+ <section class="hero is-medium is-warning is-bold">
+      <div class="columns is-mobile">
+          <div class="column">
+             <div class="container has-text-danger has-text-centered"> 
+           <strong>Transaction Failed! Please try again.</strong>   
+           <br>
+             </div>  
+          </div>
+      </div>  
+      </section>
+ {{/if}}
   <div class="hero-body">
       <div class="container is-fluid">
           <div class="column is-half is-offset-one-quarter">

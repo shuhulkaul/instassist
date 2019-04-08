@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
-const url = require('url');
+var url = require('url');
+var dateMath = require('date-arithmetic');
+var date = new Date;
+//models
+var Transactions = require('../models/transactions');
+var MyAppValidity = require('../models/myappvalidity');
+
 router.post('/webhook', function(req, res)
 {
     console.log("webhook");
@@ -16,10 +22,78 @@ var buyer = data.buyer;
 var buyer_name = data.buyer_name;
 var buyer_phone = data.buyer_phone;
 var mac = data.mac;
-var date;
 var plan;
 var limit;
+var validity;
+var period;
+switch(amount)
+{
+    case 9:
+        plan =1;
+        limit =10000;
+        period = 20;
+        break;
+    case 450:
+        plan =2;
+        limit =35000;
+        period = 30;
+        break;
+    case 800:
+        plan =3;
+        limit =65000;
+        period = 30;
 
+        break;
+    case 1550:
+        plan =4;
+        limit =34567890;
+        period = 30;
+
+        break;
+    default:
+        plan =0;
+        limit =0;
+        period = 0;
+        break;
+}
+
+validity = dateMath.add(date, period , "day");
+
+var newTransaction = new Transactions({
+    instaid : instaid,
+    buyer_name : buyer_name,
+    payment_id : payment_id,
+    payment_request_id : payment_request_id,
+    amount : amount,
+    fees : fees,
+    date : date,
+    buyer_phone : buyer_phone,
+    currency : currency,
+    status : status,
+    mac : mac,
+    buyer : buyer,
+    validity : validity,
+    limit : limit,
+    plan : plan
+});
+
+newTransaction.save(function(err) {
+    if (err) throw err;
+    console.log('Transaction added!');
+  });
+
+/**
+ var newValidation = new MyAppValidity({
+    purpose : purpose,
+    acceptlimit : limit,
+    validity : validity
+});
+
+newValidation.save(function(err) {
+    if (err) throw err;
+    console.log('Validity added!');
+  });
+ */
 
 
 });

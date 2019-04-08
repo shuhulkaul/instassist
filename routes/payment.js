@@ -94,27 +94,23 @@ console.log("callback");
 		responseData = url_parts.query;
 		if(responseData.payment_status=="Failed")
 		{
-			return res.redirect('/home');
+			return res.render('subscribe',{
+				failed : responseData.payment_status
+			});
 		}
 		else
 		{
-			res.redirect('/report');
-
-	/**
-	 	console.log(responseData);
-	if ( responseData.payment_id ) {
+		console.log(responseData);
+		if ( responseData.payment_id ) {
 		let userId = responseData.user_id;
-	//	console.log("user",user_id);
+		//console.log("user",user_id);
 		// Save the info that user has purchased the bid.
-		const bidData = {};
-		bidData.package = 'Bid100';
 		bidData.bidCountInPack = '10';
 			console.log("callback");
 			//console.log(iname);
 		// Redirect the user to payment complete page.
 		return res.render('subscribe' );
 	}
-	 */
 	}
 
 } );
