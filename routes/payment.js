@@ -92,15 +92,16 @@ console.log("callback");
 
 	let url_parts = url.parse( req.url, true),
 		responseData = url_parts.query;
-		if(!responseData)
+		if(responseData.status=="Failed")
 		{
-			res.render('home');
+			return res.redirect('/home');
 		}
 		else
 		{
-			res.render('report');
-		}
-		console.log(responseData);
+			res.redirect('/report');
+
+	/**
+	 	console.log(responseData);
 	if ( responseData.payment_id ) {
 		let userId = responseData.user_id;
 	//	console.log("user",user_id);
@@ -112,6 +113,8 @@ console.log("callback");
 			//console.log(iname);
 		// Redirect the user to payment complete page.
 		return res.render('subscribe' );
+	}
+	 */
 	}
 
 } );
