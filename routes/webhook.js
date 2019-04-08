@@ -112,9 +112,13 @@ var newTransaction = new Transactions({
 
 newTransaction.save(function(err) {
     if (err) throw err;
-    console.log('Transaction added!');
+    else{
+        console.log('Transaction added!');
+        mongoose.connection.close();
+    }
+    
   });
-  mongoose.connection.close();
+ 
 /**
  var newValidation = new MyAppValidity({
     purpose : purpose,
