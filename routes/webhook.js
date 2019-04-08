@@ -28,23 +28,23 @@ var validity;
 var period;
 switch(amount)
 {
-    case 9:
+    case "9":
         plan =1;
         limit =10000;
         period = 20;
         break;
-    case 450:
+    case "450":
         plan =2;
         limit =35000;
         period = 30;
         break;
-    case 800:
+    case "800":
         plan =3;
         limit =65000;
         period = 30;
 
         break;
-    case 1550:
+    case "1550":
         plan =4;
         limit =34567890;
         period = 30;
