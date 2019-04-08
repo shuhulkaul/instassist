@@ -7,7 +7,7 @@ var date = new Date;
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
 
-router.post('/webhook', function(req, res)
+router.post('/', function(req, res)
 {
     console.log("webhook");
 var data = res.req.body;
