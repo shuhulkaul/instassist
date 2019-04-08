@@ -26,7 +26,7 @@ var plan;
 var limit;
 var validity;
 var period;
-if(amount==9)
+if(amount == 9)
 {
         plan =1;
         limit =10000;
