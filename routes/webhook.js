@@ -3,6 +3,7 @@ var router = express.Router();
 var url = require('url');
 var dateMath = require('date-arithmetic');
 var date = new Date;
+var mongoose = require('mongoose');
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
@@ -113,7 +114,7 @@ newTransaction.save(function(err) {
     if (err) throw err;
     console.log('Transaction added!');
   });
-
+  mongoose.connection.close();
 /**
  var newValidation = new MyAppValidity({
     purpose : purpose,

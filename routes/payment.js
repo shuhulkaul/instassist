@@ -108,7 +108,7 @@ console.log("callback");
 			console.log("callback");
 			//console.log(iname);
 		// Redirect the user to payment complete page.
-		return res.render('subscribe' );
+		return res.redirect('/subscribe');
 	}
 	}
 
