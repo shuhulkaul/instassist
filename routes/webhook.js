@@ -109,7 +109,6 @@ var newTransaction = new Transactions({
     limit : limit,
     plan : plan
 });
-mongoose.connection.open();
 newTransaction.save(function(err) {
     if (err) throw err;
     else{
