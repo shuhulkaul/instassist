@@ -110,10 +110,12 @@ var newTransaction = new Transactions({
     plan : plan
 });
 newTransaction.save(function(err) {
-    if (err) console.log("error= ", err);
+    if (err) {
+        console.log("error= ", err);
+    }
     else{
         console.log('Transaction added!');
-        mongoose.connection.close();
+       mongoose.connection.close();
     }
     
   });
