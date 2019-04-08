@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
 
-router.post('/', function(req, res)
+router.post('/go', function(req, res)
 {
     console.log("webhook");
 var data = res.req.body;
@@ -109,11 +109,13 @@ var newTransaction = new Transactions({
     limit : limit,
     plan : plan
 });
-newTransaction.save(function(err) {
+newTransaction.saveOne(function(err) {
     if (err) {
         console.log("error= ", err);
     }
     else{
+        res.status(200);
+        res.send('OK');
         console.log('Transaction added!');
        // mongoose.connection.close();
        // mongoose.disconnect();
