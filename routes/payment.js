@@ -89,8 +89,17 @@ router.get( '/callback', ( req, res ) => {
 	//console.log("res=", res);
 //	console.log("req-query", req.query);
 //	console.log("name", req.user.name);
+
 	let url_parts = url.parse( req.url, true),
 		responseData = url_parts.query;
+		if(!responseData)
+		{
+			res.render('home');
+		}
+		else
+		{
+			res.render('report');
+		}
 		console.log(responseData);
 	if ( responseData.payment_id ) {
 		let userId = responseData.user_id;
