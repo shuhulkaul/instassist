@@ -125,7 +125,7 @@ newTransaction.save(function(err) {
 
 var newValidity;
 MyAppValidity.findOne({
-purpose : instaid
+'purpose' : instaid
 }, function(err, user) {
     if (user) {
             var new_acceptlimit = limit + user.acceptlimit;
