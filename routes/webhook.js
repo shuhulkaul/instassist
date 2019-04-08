@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
-
+//webhook post
 router.post('/go', function(req, res)
 {
     console.log("webhook");
@@ -111,34 +111,48 @@ var newTransaction = new Transactions({
 });
 newTransaction.save(function(err) {
     if (err) {
-        res.status(409);
-        res.send('CONFLICT');
+        res.status(208);
+        res.send('ALREADY REPORTED');
         console.log("error= ", err);
     }
     else{
-        res.status(200);
-        res.send('OK');
+        
         console.log('Transaction added!');
        // mongoose.connection.close();
        // mongoose.disconnect();
-       
     }
-    
   });
- 
-/**
- var newValidation = new MyAppValidity({
-    purpose : purpose,
-    acceptlimit : limit,
-    validity : validity
-});
 
-newValidation.save(function(err) {
-    if (err) throw err;
-    console.log('Validity added!');
-  });
- */
-
-
+var newValidity;
+MyAppValidity.findOne({
+purpose : instaid
+}, function(err, user) {
+    if (user) {
+            var new_acceptlimit = limit + user.acceptlimit;
+            var new_validity = dateMath.add(user.validity, period, "day");
+                newValidity = new MyAppValidity({
+                purpose : purpose,
+                acceptlimit : new_acceptlimit,
+                validity : new_validity
+            });
+            newValidity.save(function(err) {
+                if (err) throw err;
+                console.log('Validity(updated) added!');
+              });
+    } 
+    else {
+            newValidity = new MyAppValidity({
+            purpose : purpose,
+            acceptlimit : limit,
+            validity : validity
+        });
+        newValidity.save(function(err) {
+            if (err) throw err;
+            console.log('Validity(new) added!');
+          });
+    }
+    });
+        res.status(200);
+        res.send('OK'); 
 });
 module.exports = router;
