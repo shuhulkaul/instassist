@@ -6,15 +6,20 @@ var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
 // Init App
 var app = express();
-//404
+//Database connectivity
+mongoose.connect('mongodb+srv://scientia:scientia22@scientia-xlxw5.mongodb.net/test?retryWrites=false', { useNewUrlParser: true });
+var db = mongoose.connection;
 
 //routes
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var payment = require('./routes/payment');
 var contact = require('./routes/contact');
+var webhook = require('./routes/webhook');
 // View Engine
 //Default view directory
 app.set('views', path.join(__dirname, 'views'));
@@ -70,7 +75,7 @@ app.use('/', routes);
 app.use('/login', login);
 app.use('/payment', payment);
 app.use('/contact', contact);
-
+app.use('/webhook', webhook);
 // Set Port
 var port = process.env.PORT || 3000;
 app.listen(port, function(){

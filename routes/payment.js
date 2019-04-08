@@ -2,11 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Insta = require('instamojo-nodejs');
 const url = require('url');
-router.post('/webhook', function(req, res)
-{
-var data = res.req.body;
-console.log(data.purpose);
-});
+
 router.post('/', function(req, res)
 {
 var name = req.body.name;
