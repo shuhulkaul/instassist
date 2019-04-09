@@ -60,7 +60,7 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       
                                             req.login(user, function(err) {
-                                            if (err) { return next(err); }
+                                            if (err) { console.log("passportjs error =",err); }
                                             return res.redirect('/dashboard/' + user.purpose);
                                           });
                                             console.log("1");
