@@ -22,6 +22,7 @@ var login = require('./routes/login');
 var payment = require('./routes/payment');
 var contact = require('./routes/contact');
 var webhook = require('./routes/webhook');
+var authentication = require('./routes/authentication');
 // View Engine
 //Default view directory
 app.set('views', path.join(__dirname, 'views'));
@@ -68,6 +69,7 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
+
 // Global Vars
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
@@ -81,6 +83,7 @@ app.use('/login', login);
 app.use('/payment', payment);
 app.use('/contact', contact);
 app.use('/webhook', webhook);
+app.use('/authentication', authentication);
 // Set Port
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
@@ -88,5 +91,5 @@ app.listen(port, function(){
 });
 
 app.use(function (req, res) {
-  res.status(404).render('404');
+  res.status(404).render('404', { title: '404'});
 });
