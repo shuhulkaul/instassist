@@ -30,7 +30,7 @@ router.get('/handleAuth', function(req, res){
             res.send( err );
          }
          else
-         {  console.log("req", req);
+         {  console.log("res", res);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
             // MyAppValidity.findOne({
