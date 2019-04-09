@@ -56,18 +56,20 @@ router.get('/handleAuth', function(req, res){
                             if (user) {
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
-                                    {       console.log("1");
+                                    {       
+                                            console.log("1");
                                             res.render("dashboard");
                                     }
                                     else{
+                                        var subend = "Your subscription ended on : " + user.validity + "and your accept limit is "+ user.acceptlimit+".";
                                         console.log("12")
-                                        res.render("home");
+                                        res.render("home", {subend : subend});
                                     }
         
                             }
                             else
                             {   console.log("13");
-                                var nosub = "nosub";
+                                var nosub = "Please subscribe first!";
                                 res.render("home", {nosub : nosub});
                             }
                         });
