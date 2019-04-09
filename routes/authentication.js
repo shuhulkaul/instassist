@@ -25,8 +25,7 @@ var redirectUri = `https://instassist2.herokuapp.com/authentication/handleAuth`;
 //session logout
 router.get('/session_logout', function (req, res) {
     req.logout();
-    req.flash('error_msg', 'Your session is logged out');
-    res.redirect('/users/home');
+    res.redirect('/home');
 });
 
 //logout
@@ -71,20 +70,13 @@ router.get('/handleAuth', function(req, res){
                             if (user) {
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
-                                    {       
-                                        passport.serializeUser(function(user, done) {
-                                            done(null, user);
-                                          });
-                                          
-                                          passport.deserializeUser(function(user, done) {
-                                            done(null, user);
-                                          });
+                                    {  
                                         req.login(user, function(err) {
                                             if (err) { console.log("passportjs error =", err); }
                                             else
                                             {   
                                                 console.log(user);
-                                                res.render('dashboard',{user: user});
+                                                res.render('dashboard', {user: user});
                                             }
                                           });
                                             console.log("1");
