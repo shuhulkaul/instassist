@@ -84,7 +84,7 @@ router.get('/handleAuth', function(req, res){
                                             else
                                             {   
                                                 console.log(user);
-                                                res.redirect('/dashboard');
+                                                res.render('dashboard',{user: user});
                                             }
                                           });
                                             console.log("1");

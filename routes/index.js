@@ -18,7 +18,7 @@ router.get('/report', function(req, res)
 //dashboard
 router.get('/dashboard', function(req, res)
 {
-	res.render('dashboard', { title: 'Report an Issue | Instassist'});
+	res.render('dashboard', { title: 'Dashboard | Instassist'});
 });
 //contact
 router.get('/contactus', function(req, res)
