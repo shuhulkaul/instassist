@@ -18,7 +18,7 @@ var redirectUri = `https://instassist2.herokuapp.com/authentication/handleAuth`;
 //login
 router.post('/login', function(req, res)
 {
-            res.redirect(ig.get_authorization_url(redirectUri));
+            res.redirect(ig.get_authorization_url(redirectUri), { scope : ['basic','relationships']});
 });
 
 router.get('/handleAuth', function(req, res){
@@ -33,7 +33,7 @@ router.get('/handleAuth', function(req, res){
          else
          {
              //console.log("res1", res.req);
-            console.log("res", res.req.url.code);
+            //console.log("res", res.req.url.code);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
             // MyAppValidity.findOne({
@@ -42,23 +42,6 @@ router.get('/handleAuth', function(req, res){
             //         if (user) {}
             //     });
             var code = req.url.split('code=')[1];
-            router.post(
-                { form: { client_id: 'c5086ca1f661473ab3fb0de78f8203d7',
-                          client_secret: '3e3eeabc9fb74f2eae5aba477bce9a0a',
-                          grant_type: 'authorization_code',
-                          redirect_uri: 'https://instassist2.herokuapp.com/',
-                          code: code
-                        },
-                  url: 'https://api.instagram.com/oauth/access_token'
-                },
-                function (err, response, body) {
-                  if (err) {
-                    console.log("error in Post", err);
-                  }else{
-                    console.log(JSON.parse(body));
-                  }
-                }
-              );
          }
             
     });
