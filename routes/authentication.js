@@ -47,29 +47,33 @@ router.get('/handleAuth', function(req, res){
                     //console.log(importedJSON);
                     //console.log(importedJSON.data);
                     //console.log(importedJSON.data.username);
-                }
-                var username = importedJSON.data.username;
-                console.log(username);
-                });
-            MyAppValidity.findOne({
-                'purpose' : username
-                }, function(err, user) {
-                    if (user) {
-                            if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
-                            {       console.log("1");
-                                    res.render("dashboard");
+                    var username = importedJSON.data.username;
+                    console.log(username);
+                    
+                    MyAppValidity.findOne({
+                        'purpose' : username
+                        }, function(err, user) {
+                            if (user) {
+                                    if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
+                                    {       console.log("1");
+                                            res.render("dashboard");
+                                    }
+                                    else{
+                                        console.log("12")
+                                        res.render("home");
+                                    }
+        
                             }
-                            else{
-                                console.log("12")
+                            else
+                            {   console.log("13")
                                 res.render("home");
                             }
+                        });
 
-                    }
-                    else
-                    {   console.log("13")
-                        res.render("home");
-                    }
+
+                }
                 });
+            
          }
             
     });
