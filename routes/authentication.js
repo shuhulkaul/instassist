@@ -37,26 +37,35 @@ router.get('/handleAuth', function(req, res){
          }
          else
          {
-            //console.log("res1", res.req);
-            //console.log("res", res.req.url.code);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
             var link ='https://api.instagram.com/v1/users/self/?access_token='+accessToken;
-            //var obj = JSON.parse(link);
-            //console.log("obj=", obj);
+            var importedJSON;
             request(link, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    var importedJSON = JSON.parse(body);
+                     importedJSON = JSON.parse(body);
                     console.log(importedJSON);
                 }
                 });
-            // var jsonObject = JSON.parse('https://api.instagram.com/v1/users/self/?access_token='+accessToken);
-            // console.log(jsonObject);
-            // MyAppValidity.findOne({
-            //     'purpose' : instaid
-            //     }, function(err, user) {
-            //         if (user) {}
-            //     });
+            MyAppValidity.findOne({
+                'purpose' : importedJSON.data.username
+                }, function(err, user) {
+                    if (user) {
+                            if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
+                            {       console.log("1");
+                                    res.render("dashboard");
+                            }
+                            else{
+                                console.log("12")
+                                res.render("home");
+                            }
+
+                    }
+                    else
+                    {   console.log("13")
+                        res.render("home");
+                    }
+                });
             var code = req.url.split('code=')[1];
          }
             
