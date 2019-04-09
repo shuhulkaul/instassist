@@ -31,7 +31,7 @@ router.get('/handleAuth', function(req, res){
          }
          else
          {   console.log("res1", res.req);
-             console.log("res", res.req.Url);
+             console.log("res", res.req.url);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
             // MyAppValidity.findOne({
