@@ -10,6 +10,10 @@ var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
 //IG
 ig.use({
+    //localhost
+    // client_id:'627f13a5ec4646c09a47dfe266024e28' ,
+    // client_secret: 'fdb6ac694dcd40fdb8d7d9ecb775e303'
+    //heroku
     client_id: 'c5086ca1f661473ab3fb0de78f8203d7',
     client_secret: '3e3eeabc9fb74f2eae5aba477bce9a0a'
   });
@@ -18,7 +22,7 @@ var redirectUri = `https://instassist2.herokuapp.com/authentication/handleAuth`;
 //login
 router.post('/login', function(req, res)
 {
-            res.redirect(ig.get_authorization_url(redirectUri), { scope : ['basic','relationships']});
+            res.redirect(ig.get_authorization_url(redirectUri, { scope : ['basic','relationships']}));
 });
 
 router.get('/handleAuth', function(req, res){
