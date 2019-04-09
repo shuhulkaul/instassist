@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 var ig = require('instagram-node').instagram();
 var request = require('request');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
