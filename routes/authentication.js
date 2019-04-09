@@ -82,12 +82,6 @@ router.get('/handleAuth', function(req, res){
                                             function(req, done) { // callback with email and password from our form
                                                     return done(null, user);
                                             }));
-                                        
-                                        };
-                                        
-                                            passport.authenticate('local-login',{ successRedirect: '/',
-                                                                            failureRedirect: '/login',
-                                                                            failureFlash: true });
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
