@@ -75,7 +75,6 @@ router.get('/handleAuth', function(req, res){
 
                 }
                 });
-            
          }
             
     });
