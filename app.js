@@ -8,6 +8,8 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 // Init App
 var app = express();
 //Database connectivity
@@ -69,6 +71,9 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Global Vars
 app.use(function (req, res, next) {

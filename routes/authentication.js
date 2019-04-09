@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var ig = require('instagram-node').instagram();
 var request = require('request');
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
@@ -59,8 +60,8 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       
 
-                                            passport.authenticate('local', { successRedirect: '/dashboard',
-                                            failureRedirect: '/home',
+                                            passport.authenticate('local',{ successRedirect: '/',
+                                            failureRedirect: '/login',
                                             failureFlash: true });
                                             console.log("1");
                                             //res.render("dashboard");
