@@ -45,28 +45,28 @@ router.get('/handleAuth', function(req, res){
                 if (!error && response.statusCode == 200) {
                      importedJSON = JSON.parse(body);
                     console.log(importedJSON);
+                    console.log(importedJSON.username);
                 }
                 });
-            MyAppValidity.findOne({
-                'purpose' : importedJSON.data.username
-                }, function(err, user) {
-                    if (user) {
-                            if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
-                            {       console.log("1");
-                                    res.render("dashboard");
-                            }
-                            else{
-                                console.log("12")
-                                res.render("home");
-                            }
+            // MyAppValidity.findOne({
+            //     'purpose' : importedJSON.username
+            //     }, function(err, user) {
+            //         if (user) {
+            //                 if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
+            //                 {       console.log("1");
+            //                         res.render("dashboard");
+            //                 }
+            //                 else{
+            //                     console.log("12")
+            //                     res.render("home");
+            //                 }
 
-                    }
-                    else
-                    {   console.log("13")
-                        res.render("home");
-                    }
-                });
-            var code = req.url.split('code=')[1];
+            //         }
+            //         else
+            //         {   console.log("13")
+            //             res.render("home");
+            //         }
+            //     });
          }
             
     });
