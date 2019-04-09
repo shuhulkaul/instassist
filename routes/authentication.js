@@ -13,7 +13,7 @@ ig.use({
     client_id: '627f13a5ec4646c09a47dfe266024e28',
     client_secret: 'fdb6ac694dcd40fdb8d7d9ecb775e303'
   });
-var redirectUri = 'http://instassist2.herokuapp.com/authentication/handleAuth/';
+var redirectUri = 'https://instassist2.herokuapp.com/authentication/handleAuth/';
   
 //login
 router.post('/login', function(req, res)
