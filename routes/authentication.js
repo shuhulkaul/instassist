@@ -59,6 +59,13 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       
+                                        passport.serializeUser(function(user, done) {
+                                            done(null, user);
+                                          });
+                                          
+                                          passport.deserializeUser(function(user, done) {
+                                            done(null, user);
+                                          });
                                             req.login(user, function(err) {
                                             if (err) { console.log("passportjs error =",err); }
                                             return res.redirect('/dashboard/' + user.purpose);
