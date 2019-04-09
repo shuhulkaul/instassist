@@ -83,7 +83,7 @@ router.get('/handleAuth', function(req, res){
                                             if (err) { console.log("passportjs error =", err); }
                                             else
                                             {
-                                                res.render('dashboard', {userdetails : importedJSON});
+                                                res.redirect('/dashboard');
                                             }
                                           });
                                             console.log("1");
