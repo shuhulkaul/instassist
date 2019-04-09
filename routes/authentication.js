@@ -5,6 +5,7 @@ var dateMath = require('date-arithmetic');
 var date = new Date;
 var mongoose = require('mongoose');
 var ig = require('instagram-node').instagram();
+var request = require('request');
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
@@ -36,13 +37,19 @@ router.get('/handleAuth', function(req, res){
          }
          else
          {
-             //console.log("res1", res.req);
+            //console.log("res1", res.req);
             //console.log("res", res.req.url.code);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
             var link ='https://api.instagram.com/v1/users/self/?access_token='+accessToken;
-            var obj = JSON.parse(link);
-            console.log("obj=", obj);
+            //var obj = JSON.parse(link);
+            //console.log("obj=", obj);
+            request(link, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var importedJSON = JSON.parse(body);
+                    console.log(importedJSON);
+                }
+                });
             // var jsonObject = JSON.parse('https://api.instagram.com/v1/users/self/?access_token='+accessToken);
             // console.log(jsonObject);
             // MyAppValidity.findOne({
