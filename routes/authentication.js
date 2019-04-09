@@ -21,7 +21,20 @@ ig.use({
     client_secret: '3e3eeabc9fb74f2eae5aba477bce9a0a'
   });
 var redirectUri = `https://instassist2.herokuapp.com/authentication/handleAuth`;
-  
+//logout
+//session logout
+router.get('/session_logout', function (req, res) {
+    req.logout();
+    req.flash('error_msg', 'Your session is logged out');
+    res.redirect('/users/home');
+});
+
+//logout
+router.get('/logout', function (req, res) {
+req.logout();
+req.flash('success_msg', 'You are logged out');
+res.redirect('/users/home');
+});
 //login
 router.post('/login', function(req, res)
 {
@@ -67,8 +80,11 @@ router.get('/handleAuth', function(req, res){
                                             done(null, user);
                                           });
                                             req.login(user, function(err) {
-                                            if (err) { console.log("passportjs error =",err); }
-                                            return res.redirect('/dashboard/' + user.purpose);
+                                            if (err) { console.log("passportjs error =", err); }
+                                            else
+                                            {
+                                                res.render('dashboard', {userdetails : importedJSON});
+                                            }
                                           });
                                             console.log("1");
                                             //res.render("dashboard");

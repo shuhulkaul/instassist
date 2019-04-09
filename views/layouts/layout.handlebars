@@ -19,9 +19,16 @@
     <!-- START NAV -->
 <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-         <a class="navbar-item" href="../">
+{{#if user}}
+         <a class="navbar-item" href="/home">
             <img src="/art/instassist-l.png" alt="Logo">
          </a>
+{{else}}
+        <a class="navbar-item" href="">
+            <img src="/art/instassist-l.png" alt="Logo">
+         </a>
+{{/if}}
+
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -31,6 +38,28 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
+{{#if user}}
+      <a href="/dashboard" class="navbar-item">Dashboard</a>
+      <a href="/subscribe" class="navbar-item">
+        Subscribe
+      </a>
+    
+      <a href="/subscription-plans" class="navbar-item">
+            Subscription Plans
+      </a>
+      <a href="/contactus" class="navbar-item">
+            Contact Us
+      </a>
+         
+      <a href="/report" class="navbar-item">
+            Report an Issue
+      </a>
+      <a href="/faqs" class="navbar-item">
+            FAQs
+      </a>
+      <a href="/authentication/logout" class="navbar-item">Logout</a>
+
+{{else}}
       <a href="/home" class="navbar-item">
         Home
       </a>
@@ -52,7 +81,7 @@
       <a href="/faqs" class="navbar-item">
             FAQs
       </a>
-
+{{/if}}
       </div>
     </div>
   </div>
