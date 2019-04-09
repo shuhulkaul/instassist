@@ -45,6 +45,7 @@ router.get('/handleAuth', function(req, res){
                 if (!error && response.statusCode == 200) {
                      importedJSON = JSON.parse(body);
                     console.log(importedJSON);
+                    console.log(importedJSON.data);
                     console.log(importedJSON.username);
                 }
                 });
