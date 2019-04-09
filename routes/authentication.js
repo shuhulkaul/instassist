@@ -40,8 +40,14 @@ router.get('/handleAuth', function(req, res){
             //console.log("res", res.req.url.code);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
-            var jsonObject = JSON.parse('https://api.instagram.com/v1/users/self/?access_token='+accessToken);
-            console.log(jsonObject);
+            router.post('https://api.instagram.com/v1/users/self/?access_token='+accessToken, function(request, response)
+            {
+
+                console.log("api-req=", request);
+                console.log("api-res=", response);
+            });
+            // var jsonObject = JSON.parse('https://api.instagram.com/v1/users/self/?access_token='+accessToken);
+            // console.log(jsonObject);
             // MyAppValidity.findOne({
             //     'purpose' : instaid
             //     }, function(err, user) {
