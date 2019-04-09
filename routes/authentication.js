@@ -6,6 +6,8 @@ var date = new Date;
 var mongoose = require('mongoose');
 var ig = require('instagram-node').instagram();
 var request = require('request');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
@@ -57,11 +59,13 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       
+
+                                            passport.authenticate('local', { successRedirect: '/dashboard' });
                                             console.log("1");
-                                            res.render("dashboard");
+                                            //res.render("dashboard");
                                     }
                                     else{
-                                        var subend = "Your subscription ended on : " + user.validity + "and your accept limit is "+ user.acceptlimit+".";
+                                        var subend = "Your subscription is upto : " + user.validity + " and your accept limit is "+ user.acceptlimit+".";
                                         console.log("12")
                                         res.render("home", {subend : subend});
                                     }

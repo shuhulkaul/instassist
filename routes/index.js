@@ -15,6 +15,11 @@ router.get('/report', function(req, res)
 {
 	res.render('report', { title: 'Report an Issue | Instassist'});
 });
+//dashboard
+router.get('/dashboard', function(req, res)
+{
+	res.render('dashboard', { title: 'Report an Issue | Instassist'});
+});
 //contact
 router.get('/contactus', function(req, res)
 {
