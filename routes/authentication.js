@@ -59,7 +59,9 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       
 
-                                            passport.authenticate('local', { successRedirect: '/dashboard' });
+                                            passport.authenticate('local', { successRedirect: '/dashboard',
+                                            failureRedirect: '/home',
+                                            failureFlash: true });
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
