@@ -24,14 +24,23 @@ router.post('/login', function(req, res)
 router.get('/handleAuth', function(req, res){
     //retrieves the code that was passed along as a query to the '/handleAuth' route and uses this code to construct an access token
     ig.authorize_user(req.query.code, redirectUri, function(err, result){
-        if(err){console.log("unsuccessful login");
-     res.send( err );
-    }
-    // store this access_token in a global variable called accessToken
-        accessToken = result.access_token;
-    // After getting the access_token redirect to the '/' route 
-        console.log("successful login", accessToken);
-        res.redirect('/');
+        if(err)
+        {
+            console.log("unsuccessful login");
+            res.send( err );
+         }
+         else
+         {  console.log("req", req);
+            accessToken = result.access_token;
+            console.log("successful login", accessToken);
+            // MyAppValidity.findOne({
+            //     'purpose' : instaid
+            //     }, function(err, user) {
+            //         if (user) {}
+            //     });
+            res.redirect('/');
+         }
+            
     });
 })
 module.exports = router;
