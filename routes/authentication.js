@@ -79,10 +79,11 @@ router.get('/handleAuth', function(req, res){
                                           passport.deserializeUser(function(user, done) {
                                             done(null, user);
                                           });
-                                            req.login(user, function(err) {
+                                        req.login(user, function(err) {
                                             if (err) { console.log("passportjs error =", err); }
                                             else
-                                            {
+                                            {   
+                                                console.log(user);
                                                 res.redirect('/dashboard');
                                             }
                                           });
