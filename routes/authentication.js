@@ -40,7 +40,9 @@ router.get('/handleAuth', function(req, res){
             //console.log("res", res.req.url.code);
             accessToken = result.access_token;
             console.log("successful login", accessToken);
-           res.redirect('https://api.instagram.com/v1/users/self/?access_token='+accessToken);
+            var link ='https://api.instagram.com/v1/users/self/?access_token='+accessToken;
+            var obj = JSON.parse(link);
+            console.log("obj=", obj);
             // var jsonObject = JSON.parse('https://api.instagram.com/v1/users/self/?access_token='+accessToken);
             // console.log(jsonObject);
             // MyAppValidity.findOne({
