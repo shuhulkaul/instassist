@@ -44,9 +44,9 @@ router.get('/handleAuth', function(req, res){
             request(link, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                      importedJSON = JSON.parse(body);
-                    console.log(importedJSON);
-                    console.log(importedJSON.data);
-                    console.log(importedJSON.username);
+                    //console.log(importedJSON);
+                    //console.log(importedJSON.data);
+                    console.log(importedJSON.data.username);
                 }
                 });
             // MyAppValidity.findOne({
