@@ -59,29 +59,10 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       
-                                            // used to serialize the user for the session
-                                            
-                                            passport.authenticate('local-login',{ successRedirect: '/',
-                                                                            failureRedirect: '/login',
-                                                                            failureFlash: true });
-                                            passport.serializeUser(function(user, done) {
-                                                done(null, user.id);
-                                            });
-
-                                            // used to deserialize the user
-                                            passport.deserializeUser(function(id, done) {
-                                                User.findById(id, function(err, user) {
-                                                    done(err, user);
-                                                });
-                                            });
-                                            passport.use('local-login', new LocalStrategy({
-                                                // by default, local strategy uses username and password, we will override with email
-                                                purpose : user.purpose,
-                                                passReqToCallback : true // allows us to pass back the entire request to the callback
-                                            },
-                                            function(req, done) { // callback with email and password from our form
-                                                    return done(null, user);
-                                            }));
+                                            req.login(user, function(err) {
+                                            if (err) { return next(err); }
+                                            return res.redirect('/dashboard/' + user.purpose);
+                                          });
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
