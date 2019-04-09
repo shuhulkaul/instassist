@@ -42,7 +42,7 @@ router.get('/handleAuth', function(req, res){
             //         if (user) {}
             //     });
             var code = req.url.split('code=')[1];
-            request.post(
+            req.post(
                 { form: { client_id: 'c5086ca1f661473ab3fb0de78f8203d7',
                           client_secret: '3e3eeabc9fb74f2eae5aba477bce9a0a',
                           grant_type: 'authorization_code',
@@ -53,9 +53,9 @@ router.get('/handleAuth', function(req, res){
                 },
                 function (err, response, body) {
                   if (err) {
-                    console.log("error in Post", err)
+                    console.log("error in Post", err);
                   }else{
-                    console.log(JSON.parse(body))
+                    console.log(JSON.parse(body));
                   }
                 }
               );
