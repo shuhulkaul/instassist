@@ -66,8 +66,9 @@ router.get('/handleAuth', function(req, res){
         
                             }
                             else
-                            {   console.log("13")
-                                res.render("home", {nosub : err});
+                            {   console.log("13");
+                                var nosub = "nosub";
+                                res.render("home", {nosub : nosub});
                             }
                         });
 
