@@ -54,6 +54,7 @@ router.get('/handleAuth', function(req, res){
                         'purpose' : username
                         }, function(err, user) {
                             if (user) {
+                                console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {       console.log("1");
                                             res.render("dashboard");
@@ -66,7 +67,7 @@ router.get('/handleAuth', function(req, res){
                             }
                             else
                             {   console.log("13")
-                                res.render("home");
+                                res.render("home", {nosub : err});
                             }
                         });
 
