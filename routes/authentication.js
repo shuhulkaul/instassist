@@ -21,20 +21,7 @@ ig.use({
   });
 var redirectUri = `https://instassist2.herokuapp.com/authentication/handleAuth`;
 //logout
-//session logout
-router.get('/session_logout', function (req, res) {
-    req.logout();
-    if (req.session.user && req.cookies.user_sid) {
-        res.clearCookie('user_sid');
-        res.redirect('/');
-    } else {
-        res.redirect('/home');
-    }
-});
-
-//logout
 router.get('/logout', function (req, res) {
-    req.logout();
     if (req.session.user && req.cookies.user_sid) {
         res.clearCookie('user_sid');
         res.redirect('/');
