@@ -5,10 +5,6 @@ var dateMath = require('date-arithmetic');
 var date = new Date;
 var mongoose = require('mongoose');
 var ig = require('instagram-node').instagram();
-var request = require('request');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
@@ -27,14 +23,23 @@ var redirectUri = `https://instassist2.herokuapp.com/authentication/handleAuth`;
 //session logout
 router.get('/session_logout', function (req, res) {
     req.logout();
-    res.redirect('/home');
+    if (req.session.user && req.cookies.user_sid) {
+        res.clearCookie('user_sid');
+        res.redirect('/');
+    } else {
+        res.redirect('/home');
+    }
 });
 
 //logout
 router.get('/logout', function (req, res) {
-req.logout();
-req.flash('success_msg', 'You are logged out');
-res.redirect('/users/home');
+    req.logout();
+    if (req.session.user && req.cookies.user_sid) {
+        res.clearCookie('user_sid');
+        res.redirect('/');
+    } else {
+        res.redirect('/login');
+    }
 });
 //login
 router.post('/login', function(req, res)
@@ -73,31 +78,8 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {   
-                                        passport.serializeUser(function (user, done) {
-	
-                                            done(null, user.id);
-                                        });
-                                        passport.deserializeUser(function (id, done) {
-                                            
-                                                MyAppValidity.getUserById(id, function (err, user) {
-                                                done(err, user); });
-                                            
-                                        
-                                        });   
-                                        passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/404', failureFlash: true });
-                                        passport.use('user-local', new LocalStrategy(
-                                            {
-                                                usernameField: username,
-                                                passwordField: ''
-                                            },
-                                            function (email, password, done) {
-                                                MyAppValidity.findOne({'purpose' : email}, function (err, user) {
-                                                    if (err) throw err;
-                                                    if (user) {
-                                                        return done(null, user);
-                                                    }
-                                                });
-                                            }));
+                                        req.session.user = user.id;
+                                         res.redirect('/dashboard');
 
                                            // res.redirect('/authentication/authenticated');
                                             console.log("1");

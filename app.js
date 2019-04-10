@@ -8,8 +8,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var morgan = require('morgan');
 // Init App
 var app = express();
 //Database connectivity
@@ -17,7 +16,20 @@ mongoose.connect('mongodb+srv://instassistofficial:Inst@ssIst22@instassistdb-0no
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
-
+var sessionChecker;
+module.exports.sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.redirect('/dashboard');
+  } else {
+      next();
+  }    
+};
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+      res.clearCookie('user_sid');        
+  }
+  next();
+});
 //routes
 var routes = require('./routes/index');
 var login = require('./routes/login');
@@ -46,9 +58,10 @@ app.use(session({
     secure: true,
     maxAge:60000
        },
-secret: 'secret',
+key: 'user_sid',
+secret: 'secret22',
 saveUninitialized: true,
-resave: true
+resave: false
 }));
 // Express Validator
 app.use(expressValidator({
@@ -71,17 +84,11 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
-// Passport init
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Global Vars
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
-  res.locals.user = req.user;
-  res.locals.admin = req.admin;
   next();
 });
 

@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
 //models
 var MyAppValidity = require('../models/myappvalidity');
 //faqs
@@ -20,8 +19,14 @@ router.get('/report', function(req, res)
 });
 //dashboard
 router.get('/dashboard', function(req, res)
-{
-	res.render('dashboard', { title: 'Dashboard | Instassist'});
+{	  if (req.session.user && req.cookies.user_sid) 
+	{
+
+		res.render('dashboard', { title: 'Dashboard | Instassist'});
+    } else {
+        res.redirect('/login');
+    }
+	
 });
 //contact
 router.get('/contactus', function(req, res)
