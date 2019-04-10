@@ -17,6 +17,10 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
 app.use(morgan('dev'));
+// BodyParser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 // Express Session
 app.use(session({
   key: 'user_sid',
@@ -57,10 +61,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');
 
-// BodyParser Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, '/public')));
