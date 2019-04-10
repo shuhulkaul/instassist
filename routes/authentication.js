@@ -72,7 +72,18 @@ router.get('/handleAuth', function(req, res){
                             if (user) {
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
-                                    {      
+                                    {   
+                                        passport.serializeUser(function (user, done) {
+	
+                                            done(null, user.id);
+                                        });
+                                        passport.deserializeUser(function (id, done) {
+                                            
+                                                MyAppValidity.getUserById(id, function (err, user) {
+                                                done(err, user); });
+                                            
+                                        
+                                        });   
                                         passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/404', failureFlash: true });
                                         passport.use('user-local', new LocalStrategy(
                                             {
