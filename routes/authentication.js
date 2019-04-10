@@ -9,10 +9,10 @@ var request = require('request');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var http = require('http');
-
+var app = express();
 var option = {
     hostname : "www.instassist2.herokuapp.com" ,
-    port : express.address().port ,
+    port : app.address().port ,
     method : "POST",
     path : "/authentication/authenticated"
 } 
