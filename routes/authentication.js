@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var http = require('http');
 var app = express();
 var option = {
-    hostname : "www.instassist2.herokuapp.com" ,
+    hostname : "instassist2.herokuapp.com",
     port : process.env.PORT ,
     method : "POST",
     path : "/authentication/authenticated"
