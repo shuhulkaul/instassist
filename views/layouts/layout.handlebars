@@ -20,11 +20,11 @@
 <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
 {{#if user}}
-         <a class="navbar-item" href="/home">
+         <a class="navbar-item" href="/dashboard">
             <img src="/art/instassist-l.png" alt="Logo">
          </a>
 {{else}}
-        <a class="navbar-item" href="">
+        <a class="navbar-item" href="/home">
             <img src="/art/instassist-l.png" alt="Logo">
          </a>
 {{/if}}
@@ -39,10 +39,14 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
 {{#if user}}
-      <a href="/dashboard" class="navbar-item is-black">Dashboard</a>
-      <a href="/authentication/logout" class="navbar-item is-black">Logout</a>
+      <a href="/dashboard" class="navbar-item">Dashboard</a>
+      <a href="/authentication/logout" class="navbar-item ">Logout</a>
       
-      <div class="navbar-dropdown">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+         <div class="navbar-dropdown">
         <a href="/subscribe" class="navbar-item">
         Subscribe
       </a>
@@ -58,6 +62,7 @@
       <a href="/faqs" class="navbar-item">
             FAQs
       </a>
+      </div>
       </div>
 
 {{else}}
