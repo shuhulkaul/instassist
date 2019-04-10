@@ -44,10 +44,19 @@ req.logout();
 req.flash('success_msg', 'You are logged out');
 res.redirect('/users/home');
 });
+
+passport.use('user-local', new LocalStrategy(
+    {usernameField: 'email',
+    passwordField: 'email',
+    passReqToCallback : true},
+    function (email, password, done) {
+        console.log("done");
+        return done(null, user);
+    }));
+
 //authenticated
-router.post('/authenticated', function(req, res)
-{
-            res.status(200);});
+router.post('/authenticated' ,  passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true }));
+
 //login
 router.post('/login', function(req, res)
 {
@@ -85,15 +94,12 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {  
-                                        passport.use('user-local', new LocalStrategy(
-                                            {usernameField: 'email',
-                                            passwordField: 'email',
-                                            passReqToCallback : true},
-                                            function (email, password, done) {
-                                                console.log("done");
-                                                return done(null, user);
-                                            }));
-                                            router.put('/authentication/authenticated',  passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true }));
+                                        
+                                            router.put('/authentication/authenticated', function(req, res)
+                                            {
+                                                res.status(200);
+                                                console.log("here");
+                                            });
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
