@@ -24,7 +24,8 @@ router.get('/dashboard', function(req, res)
 
 		res.render('dashboard', { title: 'Dashboard | Instassist'});
     } else {
-        res.redirect('/login');
+		console("sk");
+        res.redirect('/home');
     }
 	
 });

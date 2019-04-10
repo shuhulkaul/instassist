@@ -16,6 +16,25 @@ mongoose.connect('mongodb+srv://instassistofficial:Inst@ssIst22@instassistdb-0no
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
+app.use(morgan('dev'));
+// Express Session
+app.use(session({
+  cookie:{
+    secure: true,
+    maxAge:60000
+       },
+key: 'user_sid',
+secret: 'secret22',
+saveUninitialized: true,
+resave: false
+}));
+
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+      res.clearCookie('user_sid');        
+  }
+  next();
+});
 var sessionChecker;
 module.exports.sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
@@ -24,12 +43,7 @@ module.exports.sessionChecker = (req, res, next) => {
       next();
   }    
 };
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-      res.clearCookie('user_sid');        
-  }
-  next();
-});
+
 //routes
 var routes = require('./routes/index');
 var login = require('./routes/login');
@@ -52,17 +66,7 @@ app.use(cookieParser());
 // Set Static Folder
 app.use(express.static(path.join(__dirname, '/public')));
 
-// Express Session
-app.use(session({
-  cookie:{
-    secure: true,
-    maxAge:60000
-       },
-key: 'user_sid',
-secret: 'secret22',
-saveUninitialized: true,
-resave: false
-}));
+
 // Express Validator
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
