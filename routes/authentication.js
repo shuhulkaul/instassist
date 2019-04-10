@@ -8,26 +8,10 @@ var ig = require('instagram-node').instagram();
 var request = require('request');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var http = require('http');
-var app = express();
-var option = {
-    hostname : "instassist2.herokuapp.com",
-    port : process.env.PORT ,
-    method : "POST",
-    path : "/authentication/authenticated"
-} 
+
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
-
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-});
-
 
 //IG
 ig.use({
@@ -52,21 +36,6 @@ req.logout();
 req.flash('success_msg', 'You are logged out');
 res.redirect('/users/home');
 });
-
-passport.use('user-local', new LocalStrategy(
-    {
-    usernameField: 'email',
-    passwordField: 'email',
-    passReqToCallback : true
-},
-    function (email, password, done) {
-        console.log("done");
-        return done(null, user);
-    }));
-
-//authenticated
-router.post('/authenticated',  passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true }));
-
 //login
 router.post('/login', function(req, res)
 {
@@ -103,12 +72,22 @@ router.get('/handleAuth', function(req, res){
                             if (user) {
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
-                                    {  
-                                        
-                                        var request = http.request(option , function(resp){
-                                          console("sent");
-                                         })
-                                         request.end();
+                                    {      
+                                        passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/404', failureFlash: true });
+                                        passport.use('user-local', new LocalStrategy(
+                                            {
+                                                usernameField: username,
+                                                passwordField: ''
+                                            },
+                                            function (email, password, done) {
+                                                MyAppValidity.findOne({'purpose' : email}, function (err, user) {
+                                                    if (err) throw err;
+                                                    if (user) {
+                                                        return done(null, user);
+                                                    }
+                                                });
+                                            }));
+
                                            // res.redirect('/authentication/authenticated');
                                             console.log("1");
                                             //res.render("dashboard");

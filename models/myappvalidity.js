@@ -18,5 +18,8 @@ var UserSchema = new mongoose.Schema({
         type : Number
       }
   });
-
+  module.exports.getUserById = function(id, callback)
+  {
+    MyAppValidity.findById(id, callback);
+  }
   var MyAppValidity = module.exports = mongoose.model('myappvalidity', UserSchema);

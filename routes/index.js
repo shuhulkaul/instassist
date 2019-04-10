@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var MyAppValidity = require('../models/myappvalidity');
 //faqs
 router.get('/faqs', function(req, res)
 {
@@ -47,6 +48,17 @@ router.get('/home', function(req, res)
 router.get('/results', function(req, res)
 {
 	res.render('results', { title: 'Result | Instassist'});
+});
+passport.serializeUser(function (user, done) {
+	
+	done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+	
+		MyAppValidity.getUserById(id, function (err, user) {
+		done(err, user); });
+	
+
 });
 
 module.exports = router;
