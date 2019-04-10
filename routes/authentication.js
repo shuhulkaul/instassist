@@ -55,7 +55,7 @@ passport.use('user-local', new LocalStrategy(
     }));
 
 //authenticated
-router.post('/authenticated' ,  passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true }));
+router.post('/authenticated',  passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true }));
 
 //login
 router.post('/login', function(req, res)
@@ -95,11 +95,7 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {  
                                         
-                                            router.put('/authentication/authenticated', function(req, res)
-                                            {
-                                                res.status(200);
-                                                console.log("here");
-                                            });
+                                            res.redirect('/authentication/authenticated');
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
