@@ -19,14 +19,13 @@ var db = mongoose.connection;
 app.use(morgan('dev'));
 // Express Session
 app.use(session({
-  cookie:{
-    secure: true,
-    maxAge:60000
-       },
-key: 'user_sid',
-secret: 'secret22',
-saveUninitialized: true,
-resave: false
+  key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
 }));
 
 app.use((req, res, next) => {
