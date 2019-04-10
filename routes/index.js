@@ -5,57 +5,123 @@ var MyAppValidity = require('../models/myappvalidity');
 //faqs
 router.get('/faqs', function(req, res)
 {
-	res.render('faqs', { title: 'FAQs | Instassist'});
-});
-//To registeration page
-router.get('/subscribe', function(req, res)
-{
-	res.render('subscribe', { title: 'Subscribe | Instassist'});
-});
-//report
-router.get('/report', function(req, res)
-{
-	res.render('report', { title: 'Report an Issue | Instassist'});
-});
-//dashboard
-router.get('/dashboard', function(req, res)
-{	  if (req.session.user && req.cookies.user_sid) 
-	{	console.log('ks');
-		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user });
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+		res.render('faqs', { title: 'FAQs | Instassist', user : req.session.user });
     } else {
-		console("sk");
-        res.redirect('/home');
+		
+		res.render('faqs', { title: 'FAQs | Instassist'});
     }
 	
 });
+//To registeration page
+router.get('/subscribe', function(req, res)
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+		res.render('subscribe', { title: 'Subscribe | Instassist', user : req.session.user });
+    } else {	
+		res.render('subscribe', { title: 'Subscribe | Instassist'});
+    }
+});
+//report
+router.get('/report', function(req, res)
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+		res.render('report', { title: 'Report an Issue | Instassist', user : req.session.user });
+    } else {	
+		res.render('report', { title: 'Report an Issue | Instassist'});
+    }
+	
+});
+//dashboard
+router.get('/dashboard', function(req, res)
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user });
+    } else {
+		
+        res.redirect('/home');
+    }
+});
 //contact
 router.get('/contactus', function(req, res)
-{
-	res.render('contactus', { title: 'Contact Us | Instassist'});
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+
+		res.render('contactus', { title: 'Contact Us | Instassist', user : req.session.user});
+	} 
+	else {
+		
+        res.render('contactus', { title: 'Contact Us | Instassist'});
+    }
+	
 });
 //plans
 router.get('/subscription-plans', function(req, res)
-{
-	res.render('plans', { title: 'Plans | Instassist'});
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+
+		res.render('plans', { title: 'Plans | Instassist', user : req.session.user});
+	} 
+	else {
+		
+		res.render('plans', { title: 'Plans | Instassist'});
+    }
+	
 });
 //terms-and-conditions
 router.get('/tnc', function(req, res)
-{
-	res.render('terms-and-conditions', { title: 'Terms & Conditions | Instassist'});
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
+
+		res.render('terms-and-conditions', { title: 'Terms & Conditions | Instassist', user : req.session.user});
+	} 
+	else {
+		
+		res.render('terms-and-conditions', { title: 'Terms & Conditions | Instassist'});
+    }
+	
 });
 // Get Homepage
 router.get('/', function(req, res)
-{
-	res.render('home', { title: 'Home | Instassist'});
+{	if (req.session.user && req.cookies.user_sid) 
+	{	
+
+		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user});
+	} 
+	else {
+		
+		res.render('home', { title: 'Home | Instassist'});
+    }
 });
 router.get('/home', function(req, res)
-{
-	res.render('home', { title: 'Home | Instassist'});
-});
-router.get('/results', function(req, res)
-{
-	res.render('results', { title: 'Result | Instassist'});
-});
+{	
+	if (req.session.user && req.cookies.user_sid) 
+	{	
 
+		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user});
+	} 
+	else {
+		
+		res.render('home', { title: 'Home | Instassist'});
+    }
+});
+// router.get('/results', function(req, res)
+// {
+// 	if (req.session.user && req.cookies.user_sid) 
+// 	{	
 
+// 		res.render('results', { title: 'Dashboard | Instassist', user : req.session.user});
+// 	} 
+// 	else {
+		
+// 		res.render('home', { title: 'Home | Instassist'});
+//     }
+// });
 module.exports = router;
