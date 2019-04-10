@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+//models
 var MyAppValidity = require('../models/myappvalidity');
 //faqs
 router.get('/faqs', function(req, res)
