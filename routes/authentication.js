@@ -44,6 +44,10 @@ req.logout();
 req.flash('success_msg', 'You are logged out');
 res.redirect('/users/home');
 });
+//authenticated
+router.post('/authenticated', function(req, res)
+{
+            res.status(200);});
 //login
 router.post('/login', function(req, res)
 {
@@ -82,11 +86,12 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {  
                                         passport.use('user-local', new LocalStrategy(
+                                            console.log("hi"),
                                             function (email, password, done) {
                                                 console.log("done");
                                                 return done(null, user);
                                             }));
-                                        passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true });
+                                            router.put('/authentication/authenticated',  passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true }));
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
