@@ -86,7 +86,9 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {  
                                         passport.use('user-local', new LocalStrategy(
-                                            console.log("hi"),
+                                            {usernameField: 'email',
+                                            passwordField: 'email',
+                                            passReqToCallback : true},
                                             function (email, password, done) {
                                                 console.log("done");
                                                 return done(null, user);
