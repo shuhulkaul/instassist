@@ -12,7 +12,7 @@ var http = require('http');
 var app = express();
 var option = {
     hostname : "www.instassist2.herokuapp.com" ,
-    port : app.address().port ,
+    port : process.env.PORT ,
     method : "POST",
     path : "/authentication/authenticated"
 } 
