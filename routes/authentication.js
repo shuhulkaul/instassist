@@ -5,6 +5,7 @@ var dateMath = require('date-arithmetic');
 var date = new Date;
 var mongoose = require('mongoose');
 var ig = require('instagram-node').instagram();
+var request = require('request');
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
