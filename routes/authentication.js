@@ -79,7 +79,7 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {   
-                                        req.session.user = user.id;
+                                        req.session.user = user;
                                          res.redirect('/dashboard');
 
                                            // res.redirect('/authentication/authenticated');

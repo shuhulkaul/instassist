@@ -20,8 +20,7 @@ router.get('/report', function(req, res)
 //dashboard
 router.get('/dashboard', function(req, res)
 {	  if (req.session.user && req.cookies.user_sid) 
-	{
-
+	{	console.log('ks');
 		res.render('dashboard', { title: 'Dashboard | Instassist'});
     } else {
 		console("sk");
