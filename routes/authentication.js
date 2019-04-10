@@ -54,9 +54,11 @@ res.redirect('/users/home');
 });
 
 passport.use('user-local', new LocalStrategy(
-    {usernameField: 'email',
+    {
+    usernameField: 'email',
     passwordField: 'email',
-    passReqToCallback : true},
+    passReqToCallback : true
+},
     function (email, password, done) {
         console.log("done");
         return done(null, user);
