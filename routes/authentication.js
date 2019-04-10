@@ -67,6 +67,7 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {   
                                         req.session.user = user;
+                                        req.session.instagram = importedJSON;
                                          res.redirect('/dashboard');
 
                                            // res.redirect('/authentication/authenticated');
