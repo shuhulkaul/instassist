@@ -11,6 +11,16 @@ var LocalStrategy = require('passport-local').Strategy;
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
+
 //IG
 ig.use({
     //localhost
@@ -71,14 +81,12 @@ router.get('/handleAuth', function(req, res){
                                 console.log(user);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {  
-                                        req.login(user, function(err) {
-                                            if (err) { console.log("passportjs error =", err); }
-                                            else
-                                            {   
-                                                console.log(user);
-                                                res.render('dashboard', {user: user});
-                                            }
-                                          });
+                                        passport.use('user-local', new LocalStrategy(
+                                            function (done) {
+                                                console.log("done");
+                                                return done(null, user);
+                                            }));
+                                        passport.authenticate('user-local', { successRedirect:'/dashboard', failureRedirect: '/home', failureFlash: true });
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
