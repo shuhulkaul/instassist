@@ -40,24 +40,25 @@
     <div class="navbar-end">
 {{#if user}}
       <a href="/dashboard" class="navbar-item is-black">Dashboard</a>
-      <a href="/subscribe" class="navbar-item">
+      <a href="/authentication/logout" class="navbar-item is-black">Logout</a>
+      
+      <div class="navbar-dropdown">
+        <a href="/subscribe" class="navbar-item">
         Subscribe
       </a>
-    
       <a href="/subscription-plans" class="navbar-item">
             Subscription Plans
       </a>
       <a href="/contactus" class="navbar-item">
             Contact Us
-      </a>
-         
+      </a> 
       <a href="/report" class="navbar-item">
             Report an Issue
       </a>
       <a href="/faqs" class="navbar-item">
             FAQs
       </a>
-      <a href="/authentication/logout" class="navbar-item is-black">Logout</a>
+      </div>
 
 {{else}}
       <a href="/home" class="navbar-item">
