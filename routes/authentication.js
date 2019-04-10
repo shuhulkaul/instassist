@@ -8,6 +8,14 @@ var ig = require('instagram-node').instagram();
 var request = require('request');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var http = require('http');
+
+var option = {
+    hostname : "www.instassist2.herokuapp.com" ,
+    port : express.address().port ,
+    method : "POST",
+    path : "/authentication/authenticated"
+} 
 //models
 var Transactions = require('../models/transactions');
 var MyAppValidity = require('../models/myappvalidity');
@@ -95,7 +103,11 @@ router.get('/handleAuth', function(req, res){
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {  
                                         
-                                            res.redirect('/authentication/authenticated');
+                                        var request = http.request(option , function(resp){
+                                          console("sent");
+                                         })
+                                         request.end();
+                                           // res.redirect('/authentication/authenticated');
                                             console.log("1");
                                             //res.render("dashboard");
                                     }
