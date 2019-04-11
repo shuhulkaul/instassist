@@ -63,7 +63,7 @@ router.get('/handleAuth', function(req, res){
                         'purpose' : username
                         }, function(err, user) {
                             if (user) {
-                                console.log(user);
+                                console.log(importedJSON);
                                     if(dateMath.lte(date, user.validity) && user.acceptlimit>0)
                                     {   
                                         req.session.user = user;
