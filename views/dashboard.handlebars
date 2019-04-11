@@ -19,11 +19,6 @@
           {{#if instagram.data.website}} <br> <b>Website :</b> {{instagram.data.website}} {{/if}}
           <br>
           <b>bio :</b> {{instagram.data.bio}} </p><hr>
-        <div class="columns is-centered">
-            <div class="column is-half">
-        <form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button></form>
-        </div>
-        </div><hr>
             <p>
           <h2>Subscription Details</h2> <small>@{{user.purpose}}</small>
           <br>
@@ -33,6 +28,11 @@
          </p>
        <a href="/subscription-plans"><button class="button is-link are-large">Change your Subscription</button></a>
           <hr>  
+          <div class="columns is-centered">
+            <div class="column is-half">
+        <form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button></form>
+        </div>
+        </div><hr>
            </div>  
     </article> 
 </div>
