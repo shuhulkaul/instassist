@@ -25,11 +25,15 @@
           <br>
           <b>Plan :</b> {{user.plan}}<br>
           <b>Validity :</b> {{user.validity}}<br>
-          <b>Accept Limit :</b> {{user.acceptlimit}} Users <hr>
+          <b>Accept Limit :</b> {{user.acceptlimit}} Users <br>
          </p>
       </div>
        <a href="/subscription-plans"><button class="button is-link are-large">Change your Subscription</button></a>
           <hr>  
+          <div class="media-right">
+                      <a><form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button></form></a>
+         </div>
+          
     </div>
   </article>
 </div>
