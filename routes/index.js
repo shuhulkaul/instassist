@@ -7,7 +7,7 @@ router.get('/faqs', function(req, res)
 {
 	if (req.session.user && req.cookies.user_sid) 
 	{	
-		res.render('faqs', { title: 'FAQs | Instassist', user : req.session.user });
+		res.render('faqs', { title: 'FAQs | Instassist', user : req.session.user, instagram :req.session.instagram  });
     } else {
 		
 		res.render('faqs', { title: 'FAQs | Instassist'});
@@ -19,7 +19,7 @@ router.get('/subscribe', function(req, res)
 {	
 	if (req.session.user && req.cookies.user_sid) 
 	{	
-		res.render('subscribe', { title: 'Subscribe | Instassist', user : req.session.user });
+		res.render('subscribe', { title: 'Subscribe | Instassist', user : req.session.user, instagram :req.session.instagram  });
     } else {	
 		res.render('subscribe', { title: 'Subscribe | Instassist'});
     }
@@ -29,7 +29,7 @@ router.get('/report', function(req, res)
 {	
 	if (req.session.user && req.cookies.user_sid) 
 	{	
-		res.render('report', { title: 'Report an Issue | Instassist', user : req.session.user });
+		res.render('report', { title: 'Report an Issue | Instassist', user : req.session.user , instagram :req.session.instagram });
     } else {	
 		res.render('report', { title: 'Report an Issue | Instassist'});
     }
@@ -52,7 +52,7 @@ router.get('/contactus', function(req, res)
 	if (req.session.user && req.cookies.user_sid) 
 	{	
 
-		res.render('contactus', { title: 'Contact Us | Instassist', user : req.session.user});
+		res.render('contactus', { title: 'Contact Us | Instassist', user : req.session.user, instagram :req.session.instagram });
 	} 
 	else {
 		
@@ -66,7 +66,7 @@ router.get('/subscription-plans', function(req, res)
 	if (req.session.user && req.cookies.user_sid) 
 	{	
 
-		res.render('plans', { title: 'Plans | Instassist', user : req.session.user});
+		res.render('plans', { title: 'Plans | Instassist', user : req.session.user, instagram :req.session.instagram });
 	} 
 	else {
 		
@@ -80,7 +80,7 @@ router.get('/tnc', function(req, res)
 	if (req.session.user && req.cookies.user_sid) 
 	{	
 
-		res.render('terms-and-conditions', { title: 'Terms & Conditions | Instassist', user : req.session.user});
+		res.render('terms-and-conditions', { title: 'Terms & Conditions | Instassist', user : req.session.user, instagram :req.session.instagram });
 	} 
 	else {
 		
@@ -93,7 +93,7 @@ router.get('/', function(req, res)
 {	if (req.session.user && req.cookies.user_sid) 
 	{	
 
-		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user});
+		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user, instagram :req.session.instagram });
 	} 
 	else {
 		
@@ -105,7 +105,7 @@ router.get('/home', function(req, res)
 	if (req.session.user && req.cookies.user_sid) 
 	{	
 
-		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user});
+		res.render('dashboard', { title: 'Dashboard | Instassist', user : req.session.user, instagram :req.session.instagram });
 	} 
 	else {
 		
