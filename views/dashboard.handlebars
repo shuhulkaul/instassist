@@ -1,4 +1,5 @@
-<section class="hero is-fullheight is-info">
+<div class="hero-body has-background-grey-dark">
+<div class="container is-centered">
 <div class="box">
   <article class="media">
     <div class="media-left">
@@ -11,17 +12,35 @@
         <p>
           <strong>{{instagram.data.full_name}}</strong> <small>@{{instagram.data.username}}</small>
           <br>
-          Media : {{instagram.data.counts.media}} <br>
-          Following : {{instagram.data.counts.follows}}  <br>
-          Followers : {{instagram.data.counts.followed_by}}  <br>
-          Business Profile : {{instagram.data.is_business}}
-          {{#if instagram.data.website}} <br> Website : {{instagram.data.website}} {{/if}}
+          <b>Media :</b> {{instagram.data.counts.media}} <br>
+          <b>Following :</b> {{instagram.data.counts.follows}}  <br>
+          <b>Followers :</b> {{instagram.data.counts.followed_by}}  <br>
+          <b>Business Profile :</b> {{instagram.data.is_business}}
+          {{#if instagram.data.website}} <br> <b>Website :</b> {{instagram.data.website}} {{/if}}
           <br>
           <hr>
-          bio : {{instagram.data.bio}} 
+          <b>bio :</b> {{instagram.data.bio}} 
            </p>
       </div>
     </div>
   </article>
 </div>
-</section>
+<div class="box">
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>Subscription Details</strong> <small>@{{user.purpose}}</small>
+          <br>
+          <b>Plan :</b> {{user.plan}}<br>
+          <b>Validity :</b> {{user.validity}}<br>
+          <b>Accept Limit :</b> {{user.acceptlimit}} Users <br>
+          <a href="/subscription-plans"><button class="button is-link are-large">Change your Subscription</button></a>
+           </p>
+      </div>
+    </div>
+  </article>
+</div>
+</div>
+</div>
+
