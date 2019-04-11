@@ -39,7 +39,7 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
 {{#if user}}
-  <form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button> </form>
+  <a><form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button></form></a>
       <a href="/dashboard" class="navbar-item">@{{instagram.data.username}}</a>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
