@@ -1,5 +1,5 @@
 <div class="level">
-<div class="box level-item">
+<div class="box">
   <article class="media">
     <div class="media-left">
       <figure class="image is-64x64">
@@ -17,13 +17,12 @@
           <b>Business Profile :</b> {{instagram.data.is_business}}
           {{#if instagram.data.website}} <br> <b>Website :</b> {{instagram.data.website}} {{/if}}
           <br>
-          <hr>
           <b>bio :</b> {{instagram.data.bio}} 
            </p>
            <hr>
             <p>
           <strong>Subscription Details</strong> <small>@{{user.purpose}}</small>
-          <hr>
+          <br>
           <b>Plan :</b> {{user.plan}}<br>
           <b>Validity :</b> {{user.validity}}<br>
           <b>Accept Limit :</b> {{user.acceptlimit}} Users <hr>
