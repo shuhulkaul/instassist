@@ -38,7 +38,18 @@
                   <input  class="input is-rounded is-focused" name="name" id="name" type="text" placeholder="Name" required>
                 </div>
               </div>
+            {{#if user}}
+        <div class="field">
+                <label class="label has-text-danger">Instagram Username</label>
+                  <input class="input is-rounded is-focused" name="iname" id="iname" type="text" value={{user.purpose}} placeholder="eg: instassist" hidden>
+              </div>
 
+              <div class="field">
+                <label class="label has-text-danger">Re-enter your Instagram Username</label>
+                  <input class="input is-rounded is-focused" name="reiname" id="reiname" type="text" value={{user.purpose}} placeholder="eg: instassist" hidden>
+              </div>
+
+            {{else}}
               <div class="field">
                 <label class="label has-text-danger">Instagram Username</label>
                   <input class="input is-rounded is-focused" name="iname" id="iname" type="text" placeholder="eg: instassist" required>
@@ -48,7 +59,7 @@
                 <label class="label has-text-danger">Re-enter your Instagram Username</label>
                   <input class="input is-rounded is-focused" name="reiname" id="reiname" type="text" placeholder="eg: instassist" required>
               </div>
-
+              {{/if}}
               <div class="field">
                 <label class="label has-text-danger">Mobile Number</label>
                   <input class="input is-rounded is-focused" name="mobile" id="mobile" type="text" placeholder="eg: 9XXXXXX123" required>

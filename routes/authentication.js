@@ -37,7 +37,7 @@ router.post('/login', function(req, res)
 
 router.get('/handleAuth', function(req, res){
     //retrieves the code that was passed along as a query to the '/handleAuth' route and uses this code to construct an access token
-    console.log("req.query.code=",req.query.code);
+    console.log("req.query.code=", req.query.code);
     ig.authorize_user(req.query.code, redirectUri, function(err, result){
         if(err)
         {
