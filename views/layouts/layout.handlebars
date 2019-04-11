@@ -39,6 +39,7 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
 {{#if user}}
+      <a href="/dashboard" class="navbar-item">@{{user.data.username}}</a>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
@@ -61,7 +62,6 @@
       </a>
       </div>
       </div>
-      <a href="/dashboard" class="navbar-item">Dashboard</a>
       <a href="/authentication/logout" class="navbar-item ">Logout</a>
 {{else}}
       <a href="/home" class="navbar-item">

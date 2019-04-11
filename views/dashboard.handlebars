@@ -10,10 +10,13 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{instagram.data.full_name}}</strong> <small>@{{instagram.data.username}}</small> <small>31m</small>
+          <strong>{{instagram.data.full_name}}</strong> <small>@{{instagram.data.username}}</small>
           <br>
-          Media : {{instagram.data.counts.media}}       Following : {{instagram.data.counts.follows}}       Followers : {{instagram.data.counts.followed_by}}  <br>
-          Business Profile : {{instagram.data.is_business}}   {{#if instagram.data.website}} Website : {{instagram.data.website}} {{/if}}
+          Media : {{instagram.data.counts.media}} <br>
+          Following : {{instagram.data.counts.follows}}  <br>
+          Followers : {{instagram.data.counts.followed_by}}  <br>
+          Business Profile : {{instagram.data.is_business}}
+          {{#if instagram.data.website}} <br> Website : {{instagram.data.website}} {{/if}}
           <br>
           <hr>
           bio : {{instagram.data.bio}} 
