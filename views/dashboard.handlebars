@@ -1,4 +1,6 @@
 <section class="section section-padding">
+<div class="columns">
+<div class="column is-one-third">
 <div class="box">
   <article class="media">
     <div class="media-left">
@@ -18,7 +20,6 @@
           <br>
           <b>bio :</b> {{instagram.data.bio}} 
            </p>
-           <form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button></form>
            <hr>
             <p>
           <strong>Subscription Details</strong> <small>@{{user.purpose}}</small>
@@ -27,13 +28,13 @@
           <b>Validity :</b> {{user.validity}}<br>
           <b>Accept Limit :</b> {{user.acceptlimit}} Users <br>
          </p>
-      </div>
+     
        <a href="/subscription-plans"><button class="button is-link are-large">Change your Subscription</button></a>
+       <form method="post" action="/authentication/login"> <button class="button is-success are-large">Refresh</button></form>
           <hr>  
-          
-          
-    </div>
-  </article>
+           </div>  
+    </article> 
+</div>
 </div>
 </div>
 </section>
