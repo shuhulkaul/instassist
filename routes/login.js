@@ -1,5 +1,5 @@
 var Promise = require('bluebird');
-//var Client = require('instagram-private-api').V1;
+var Client = require('instagram-private-api').V1;
 var express = require('express');
 var router = express.Router();
 var session = null;
@@ -12,6 +12,29 @@ router.post('/accept', function(req, res)
 {
 var username = req.body.username;
 var password= req.body.password;
+var templimit = req.body.limit;
+var limit=0;
+if(templimit==1000)
+{
+    limit=1000;
+}
+else if(templimit==5000)
+{
+    limit=5000;
+}
+else if(templimit==10000)
+{
+    limit=10000;
+}
+else if(templimit==0)
+{
+    limit=req.session.user.acceptlimit;
+}
+else{
+    res.redirect('/dashboard');
+}
+if(limit<=req.session.user.acceptlimit)
+{
 var device = new Client.Device(username);
 var loc = path.join("./cookie-"+username+".json");
 var storage = new Client.CookieFileStorage(loc);
@@ -54,7 +77,7 @@ function setTimeoutContinue(){
 			console.log('Set timeouts error:', err)
 			setTimeoutContinue()
 		})
-	}, 1000 * 60 * everyMinutes )
+	}, 100000 * 60 * everyMinutes )
 }
 
 function error(msg){
@@ -73,7 +96,7 @@ function checkpoint(req, res, url)
 function accepted(req, res, total)
 {
     fs.unlinkSync(loc);
-    res.render('completed', {total : total});
+    res.render('dashboard', {total : total});
 }
 
 // Login and go
@@ -99,78 +122,11 @@ Client.Session.create(device, storage, username, password)
      
     }
     )
-
+}
+else {
+    res.redirect('/dashboard')
+}
 }
 );
-//SCan
-router.post('/scan', function(req, res)
-{
-var username = req.body.username;
-var password= req.body.password;
-//console.log(username);
-//console.log(password);
-var device = new Client.Device(username);
-var loc = path.join("./cookie-"+username+".json");
-var storage = new Client.CookieFileStorage(loc);
-Client.Session.create(device, storage, username, password)
-	.then(( ses ) => {
-		session = ses
-		DoApprovals(username, password).catch(( err ) => {
-			console.log('Create sessions error:', err.message);
-			setTimeoutContinue()
-		})
-	})
-	.catch(( err ) => {
-        
-        console.log('err1:', err.message);
-        if(err.url)
-        {   
-       
-           checkpoint(req, res, err.url);
-        }
-        else{
-           
-            error(err.message);
-            console.log("url is null");
-        }
-     
-    }
-    );
-
-    function error(msg){
-        fs.unlinkSync(loc);
-        req.flash('error_msg', msg);
-		res.redirect('/error');
-    }
-
-    function checkpoint(req, res, url)
-    {  fs.unlinkSync(loc);
-        res.redirect(url);
-    }
-
-    function results(session, length)
-    {  
-       fs.unlinkSync(loc);
-        res.render('results',{total:length});
-        //console.log("session=", session);
-        
-    }
-
-    function DoApprovals(username, password){
-        var  i=0;
-        return Client.Relationship.pendingFollowers( session )
-            .then(( pendingFollowers ) => {
-            while(typeof pendingFollowers[i] !== 'undefined')
-            {
-             // console.log(i);
-                ++i;
-            }
-          // console.log(pendingFollowers[200]._params);
-           results(session, i);
-            
-            })
-    }
-
-});
 
 module.exports = router;

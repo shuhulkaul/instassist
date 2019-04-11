@@ -1,3 +1,15 @@
+{{#if success}}
+ <section class="hero is-medium is-success is-bold">
+      <div class="columns is-mobile">
+          <div class="column">
+             <div class="container has-text-white has-text-centered"> 
+           <strong>Accepted {{total}} requests.</strong>   
+           <br>
+             </div>  
+          </div>
+      </div>  
+      </section>
+ {{/if}}
 <section class="section section-padding">
 <div class="columns">
 <div class="column is-one-third">
@@ -41,10 +53,34 @@
 <div class="box">
   <article class="media">
     <div class="media-left">
-      
     </div>
         <div class="content">
-       hi
+          <h3 class="title has-text-danger">Accepter</h3>
+            <form method="post" id="sub" action="login/accept">
+              <label class="label has-text-danger">Instagram Username</label>
+                  <input class="input is-rounded is-focused" name="username" id="username" type="text" placeholder="eg: instassist" >
+              </div>
+              <div class="field">
+                <label class="label has-text-danger">Instagram Password</label>
+                  <input class="input is-rounded is-focused" name="password" id="password" type="text" placeholder="eg: instassist" >
+              </div>
+              <div class="field">
+                <label class="label has-text-danger">Choose Accept Limit</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="limit" id="limit">
+                      <option value="1000">1K</option>
+                      <option value="5000">5K</option>
+                      <option value="3000">10K</option>
+                      <option value="0">{{user.acceptlimit}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="control">
+                  <button class="button is-link">Accept</button>
+                </div>
+                </form>
            </div>  
     </article> 
 </div>

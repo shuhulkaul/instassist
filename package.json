@@ -23,6 +23,7 @@
     "flash": "^1.1.0",
     "http": "0.0.0",
     "instagram-node": "^0.5.8",
+    "instagram-private-api": "^0.6.8",
     "instamojo-nodejs": "0.0.5",
     "mongodb": "^3.2.3",
     "mongoose": "^5.4.22",
