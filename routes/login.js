@@ -51,7 +51,7 @@ function DoApprovals(){
 				return Promise.delay(200).then( pending.approvePending.bind( pending ) )
 			}).then(() => {
 				
-                if(pendingCount==0 || pendingCount==10000 || pendingCount>10000)
+                if(pendingCount==0 || pendingCount==limit || pendingCount>limit)
                 {
                     accepted(req, res, total);
                 }

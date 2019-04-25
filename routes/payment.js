@@ -51,11 +51,11 @@ if (errors) {
 else {
    
     console.log("amount=", amount);
-	  Insta.setKeys('test_13aa1f1327d28dd1c9bcc0779a6', 'test_f4bfe00d422e44fb0e70591191e');
-	//Insta.setKeys('a1c9a8485963bd845454a3b78b4d0d7e', '11f209e10f2790dd3b2050b90b0f53c9');
+	 // Insta.setKeys('test_13aa1f1327d28dd1c9bcc0779a6', 'test_f4bfe00d422e44fb0e70591191e');
+	Insta.setKeys('a1c9a8485963bd845454a3b78b4d0d7e', '11f209e10f2790dd3b2050b90b0f53c9');
 
 		const data = new Insta.PaymentData();
-		Insta.isSandboxMode(true);
+	//	Insta.isSandboxMode(true);
 
 	data.purpose = iname;
 	data.amount = amount;
